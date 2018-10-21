@@ -2,13 +2,13 @@ DROP SCHEMA IF EXISTS 'APP_DB';
 CREATE SCHEMA IF NOT EXISTS 'APP_DB' DEFAULT CHARACTER SET utf8_polish_ci;
 USE 'APP_DB';
 
-CREATE TABLE Voting_types (
+CREATE TABLE IF NOT EXISTS Voting_types (
 vtype_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-name varchar,
+name varchar(200),
 PRIMARY KEY (vtype_id)
 );
 
-CREATE TABLE Votings (
+CREATE TABLE IF NOT EXISTS Votings (
 voting_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 start_date datetime,
 end_date datetime,
@@ -16,117 +16,152 @@ active bit,
 vtype_id int(8) unsigned,
 PRIMARY KEY (voting_id),
 FOREIGN KEY (vtype_id) REFERENCES Voting_types(vtype_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Voting_options (
+CREATE TABLE IF NOT EXISTS Voting_options (
 voptions_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-name varchar,
+name varchar(200),
 voting_id int(8) unsigned,
 PRIMARY KEY (voptions_id),
 FOREIGN KEY (voting_id) REFERENCES Votings(voting_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Votes (
+CREATE TABLE IF NOT EXISTS Votes (
 votes_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 voting_id int(8) unsigned,
 voptions_id int(8) unsigned,
 user_id int(8) unsigned,
 PRIMARY KEY (votes_id),
-FOREIGN KEY (voting_id) REFERENCES Votings(voting_id),
-FOREIGN KEY (voptions_id) REFERENCES Voting_options(voptions_id),
+FOREIGN KEY (voting_id) REFERENCES Votings(voting_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (voptions_id) REFERENCES Voting_options(voptions_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
 FOREIGN KEY (user_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Toplists (
+CREATE TABLE IF NOT EXISTS Toplists (
 toplist_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-name varchar,
+name varchar(200),
 oslist_id int(8) unsigned,
 genre_id int(8) unsigned,
 user_id int(8) unsigned,
 PRIMARY KEY (toplist_id),
-FOREIGN KEY (oslist_id) REFERENCES Ordered_song_lists(oslist_id),
-FOREIGN KEY (genre_id) REFERENCES Genres(genre_id),
+FOREIGN KEY (oslist_id) REFERENCES Ordered_song_lists(oslist_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY (genre_id) REFERENCES Genres(genre_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
 FOREIGN KEY (user_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Playlists (
+CREATE TABLE IF NOT EXISTS Playlists (
 playlist_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-playlist_spotify_id varchar,
-name varchar,
+playlist_spotify_id varchar(200),
+name varchar(200),
 oslist_id int(8) unsigned,
 user_id int(8) unsigned,
 PRIMARY KEY (playlist_id),
-FOREIGN KEY (oslist_id) REFERENCES Ordered_song_lists(oslist_id),
+FOREIGN KEY (oslist_id) REFERENCES Ordered_song_lists(oslist_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
 FOREIGN KEY (user_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Ordered_song_lists (
+CREATE TABLE IF NOT EXISTS Ordered_song_lists (
 oslist_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 song_id int(8) unsigned,
 order_ int unsigned,
 PRIMARY KEY (oslist_id),
 FOREIGN KEY (song_id) REFERENCES Songs(song_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Genres (
+CREATE TABLE IF NOT EXISTS Genres (
 genre_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-typ varchar,
+typ varchar(200),
 PRIMARY KEY (genre_id)
 );
 
-CREATE TABLE Albums (
+CREATE TABLE IF NOT EXISTS Albums (
 album_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-album_spotify_id varchar,
-name varchar,
+album_spotify_id varchar(200),
+name varchar(200),
 artist_id int(8) unsigned,
 oslist_id int(8) unsigned,
 PRIMARY KEY (album_id),
 FOREIGN KEY (artist_id) REFERENCES Artists(artist_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
 FOREIGN KEY (oslist_id) REFERENCES Ordered_song_lists(oslist_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
 );
 
-CREATE TABLE Artists (
+CREATE TABLE IF NOT EXISTS Artists (
 artist_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-artist_spotify_id varchar,
-name varchar,
-born_date datetime
+artist_spotify_id varchar(200),
+name varchar(200),
+born_date datetime,
 oslist_id int(8) unsigned,
 PRIMARY KEY (artist_id),
 FOREIGN KEY (oslist_id) REFERENCES Ordered_song_lists(oslist_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
 );
 
-CREATE TABLE Songs (
+CREATE TABLE IF NOT EXISTS Songs (
 song_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-song_spotify_id varchar,
-title varchar,
+song_spotify_id varchar(200),
+title varchar(200),
 release_date datetime,
 artist_id int(8) unsigned,
 album_id int(8) unsigned,
 genre_id int(8) unsigned,
 PRIMARY KEY (song_id),
-FOREIGN KEY (artist_id) REFERENCES Artists(artist_id),
-FOREIGN KEY (album_id) REFERENCES Albums(album_id),
+FOREIGN KEY (artist_id) REFERENCES Artists(artist_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (album_id) REFERENCES Albums(album_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
 FOREIGN KEY (genre_id) REFERENCES Genres(genre_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Roles (
+CREATE TABLE IF NOT EXISTS Roles (
 role_id int(8) unsigned NOT NULL AUTO_INCREMENT,
+role_name varchar(200),
 events bit,
 articles bit,
 god bit,
 PRIMARY KEY (role_id)
 );
 
-CREATE TABLE Countries (
+CREATE TABLE IF NOT EXISTS Countries (
 country_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-country_name varchar,
+country_name varchar(200),
 PRIMARY KEY (country_id)
 );
 
-CREATE TABLE Users (
+CREATE TABLE IF NOT EXISTS Users (
 user_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-user_fb_id varchar,
-user_spotify_id varchar,
+user_fb_id varchar(200),
+user_spotify_id varchar(200),
 login varchar(40),
 password char(40),
 age int(2),
@@ -136,48 +171,56 @@ registration_date datetime,
 role_id int(8) unsigned,
 country_id int(8) unsigned,
 PRIMARY KEY (user_id),
-FOREIGN KEY (role_id) REFERENCES Roles(role_id),
+FOREIGN KEY (role_id) REFERENCES Roles(role_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
 FOREIGN KEY (country_id) REFERENCES Countries(country_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Cities (
+CREATE TABLE IF NOT EXISTS Cities (
 city_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-name varchar,
+name varchar(200),
 PRIMARY KEY (city_id)
 );
 
-CREATE TABLE Addresses (
+CREATE TABLE IF NOT EXISTS Addresses (
 address_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-street varchar,
-house_num varchar,
-apart_num varchar,
+street varchar(200),
+house_num varchar(10),
+apart_num varchar(10),
 city_id int(8) unsigned,
 PRIMARY KEY (address_id),
 FOREIGN KEY (city_id) REFERENCES Cities(city_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Texts (
+CREATE TABLE IF NOT EXISTS Texts (
 text_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 text text,
-text_short text
+text_short text,
 PRIMARY KEY (text_id)
 );
 
-CREATE TABLE Photos (
+CREATE TABLE IF NOT EXISTS Photos (
 photo_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-photo_path varchar,
+photo_path varchar(200),
 PRIMARY KEY (photo_id)
 );
 
-CREATE TABLE Modifications (
+CREATE TABLE IF NOT EXISTS Modifications (
 mod_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 user_id int(8) unsigned,
-mod_date datetime
+mod_date datetime,
 PRIMARY KEY (mod_id),
 FOREIGN KEY (user_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
-CREATE TABLE Articles (
+CREATE TABLE IF NOT EXISTS Articles (
 article_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 title varchar(50),
 create_date datetime,
@@ -186,15 +229,23 @@ photo_id int(8) unsigned,
 text_id int(8) unsigned,
 mod_id int(8) unsigned,
 PRIMARY KEY (article_id),
-FOREIGN KEY (author_id) REFERENCES Users(user_id),
-FOREIGN KEY (photo_id) REFERENCES Photos(photo_id),
-FOREIGN KEY (text_id) REFERENCES Texts(text_id),
+FOREIGN KEY (author_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (photo_id) REFERENCES Photos(photo_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY (text_id) REFERENCES Texts(text_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
 FOREIGN KEY (mod_id) REFERENCES Modifications(mod_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
 );
 
-CREATE TABLE Events (
+CREATE TABLE IF NOT EXISTS Events (
 event_id int(8) unsigned NOT NULL AUTO_INCREMENT,
-name varchar,
+name varchar(200),
 start_time datetime,
 end_time datetime,
 create_date datetime,
@@ -204,9 +255,19 @@ photo_id int(8) unsigned,
 text_id int(8) unsigned,
 mod_id int(8) unsigned,
 PRIMARY KEY (event_id),
-FOREIGN KEY (address_id) REFERENCES Addresses(address_id),
-FOREIGN KEY (user_id) REFERENCES Users(user_id),
-FOREIGN KEY (photo_id) REFERENCES Photos(photo_id),
-FOREIGN KEY (text_id) REFERENCES Texts(text_id),
+FOREIGN KEY (address_id) REFERENCES Addresses(address_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (user_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (photo_id) REFERENCES Photos(photo_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY (text_id) REFERENCES Texts(text_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
 FOREIGN KEY (mod_id) REFERENCES Modifications(mod_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
 );
