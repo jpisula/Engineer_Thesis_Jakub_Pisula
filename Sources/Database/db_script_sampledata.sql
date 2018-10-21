@@ -106,10 +106,50 @@ INSERT INTO Songs (song_spotify_id, title, release_date, artist_id, album_id, ge
 INSERT INTO Songs (song_spotify_id, title, release_date, artist_id, album_id, genre_id)
 	VALUES (NULL, 'Shape of You', '2017-03-03', 2, 2, 2);
 	
---- ORDERED_SONGS
+-- ORDERED_SONGS
 INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (1, 1, 2);
 INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (2, 1, 1);
 INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (3, 1, 3);
 INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (4, 2, 1);
 INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (6, 2, 3);
 INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (5, 2, 2);
+INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (1, 3, 3);
+INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (4, 3, 1);
+INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (6, 3, 4);
+INSERT INTO Ordered_songs (song_id, oslist_id, order_) VALUES (5, 3, 2);
+
+-- PLAYLISTS
+INSERT INTO Playlists (playlist_spotify_id, name, oslist_id, user_id) VALUES (NULL, 'Moja playlista adminowa', 3, 1);
+
+-- TOPLISTS
+INSERT INTO Toplists (name, oslist_id, genre_id, user_id) VALUES ('Moja adminowa toplista', 3, 2, 1);
+
+-- VOTING TYPES
+INSERT INTO Voting_types (name) VALUES ('Artysta miesiąca');
+INSERT INTO Voting_types (name) VALUES ('Utwór dnia');
+
+-- VOTINGS
+INSERT INTO Votings (start_date, end_date, active, vtype_id) VALUES ('2018-10-01', '2018-10-31', 1, 1);
+INSERT INTO Votings (start_date, end_date, active, vtype_id) VALUES ('2018-10-01', '2018-10-31', 1, 2);
+INSERT INTO Votings (start_date, end_date, active, vtype_id) VALUES ('2018-09-01', '2018-09-30', 0, 1);
+INSERT INTO Votings (start_date, end_date, active, vtype_id) VALUES ('2018-09-01', '2018-09-30', 0, 2);
+
+-- VOTING OPTIONS
+INSERT INTO Voting_options (name, voting_id) VALUES ('Ed Sheeran',1);
+INSERT INTO Voting_options (name, voting_id) VALUES ('Bebe Rexha',1);
+INSERT INTO Voting_options (name, voting_id) VALUES ('Ed Sheeran - Shape of You',2);
+INSERT INTO Voting_options (name, voting_id) VALUES ('Pharell Williams - Happy',2);
+INSERT INTO Voting_options (name, voting_id) VALUES ('Why Don\'t We',3);
+INSERT INTO Voting_options (name, voting_id) VALUES ('Adele',3);
+INSERT INTO Voting_options (name, voting_id) VALUES ('Paweł Domagała',3);
+INSERT INTO Voting_options (name, voting_id) VALUES ('Why Don\'t We - Trust Fund Baby',4);
+
+-- Votes
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (1, 2, 1);
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (1, 2, 2);
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (1, 1, 4);
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (2, 4, 1);
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (2, 4, 3);
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (3, 7, 1);
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (3, 6, 4);
+INSERT INTO Votes (voting_id, voptions_id, user_id) VALUES (4, 8, 1);
