@@ -80,12 +80,21 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 );
 
-CREATE TABLE IF NOT EXISTS Ordered_song_lists (
+CREATE TABLE IF NOT EXISTS song_lists (
 oslist_id int(8) unsigned NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (oslist_id)
+);
+
+CREATE TABLE IF NOT EXISTS ordered_songs (
+ordsongs_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 song_id int(8) unsigned,
+oslist_id int(8) unsigned,
 order_ int unsigned,
-PRIMARY KEY (oslist_id),
+PRIMARY KEY (ordsongs_id),
 FOREIGN KEY (song_id) REFERENCES Songs(song_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (oslist_id) REFERENCES song_lists(oslist_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 );
@@ -100,6 +109,7 @@ CREATE TABLE IF NOT EXISTS Albums (
 album_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 album_spotify_id varchar(200),
 name varchar(200),
+release_date datetime,
 artist_id int(8) unsigned,
 oslist_id int(8) unsigned,
 PRIMARY KEY (album_id),
@@ -241,6 +251,19 @@ ON UPDATE CASCADE,
 FOREIGN KEY (mod_id) REFERENCES Modifications(mod_id)
 ON DELETE CASCADE
 ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Event_Participants (
+event_part_id int(8) unsigned NOT NULL AUTO_INCREMENT,
+event_id int(8) unsigned,
+user_id int(8) unsigned,
+PRIMARY KEY (event_part_id),
+FOREIGN KEY (event_id) REFERENCES Events(event_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (user_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS Events (
