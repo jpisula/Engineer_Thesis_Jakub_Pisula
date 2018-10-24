@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>get artists</title>
+	</head>
+	
+	<body>
+		<div id="textBlock">
+		</div>
+	</body>
+	
+	<script src="jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		
+			$.ajax({
+				// ta linijka odsyła plik do naszego localhosta
+				url: 'http://localhost/',
+				method: 'POST',
+				dataType: 'json',
+				crossDomain: true,
+				data: {query: 'get-artist'}
+			})
+			.done(function(data){
+				
+				var body = '';
+
+				for(var i = 0; i < data.length; ++i)
+				{
+					body += '<p>' + data[i]['name'] + '</p>';
+				}
+
+				$('#textBlock').append(body);
+
+			});
+		
+		});
+	</script>
+</html>

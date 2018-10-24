@@ -1,0 +1,10 @@
+﻿Do zrobienia:
+!!! STWORZYĆ LOGGERA I KONSOLE!!!
+1. Obudować PDO
+2. Obudować queries z indexa (if(!$ROUTER->Get("query"))
+    {
+        echo 'false';
+    }
+    else) te zabawa
+3. Stworzyć funkcje wykonujące operacje na bazie danych
+4. Dbać o zabezpieczenie projektu
