@@ -1,0 +1,34 @@
+<?php
+
+class Database
+{
+    // Database Params
+    private $host = 'localhost';
+    private $db_name = 'app_db';
+    private $port = '3306'; //domyślnie jest to port 3306
+    private $username = 'root';
+    private $password = '';
+    private $conn;
+
+    public function __construct() {
+    }
+
+
+    /**
+     * Database connect.
+     */
+    public function connect() {
+        $this->conn = null;
+        try {
+            $this->conn = new PDO('mysql:host='.$this->host.';dbname='.$this->db_name.';charset=utf8;port='.$this->port, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e) {
+            var_dump($e);
+        }
+
+        return $this->conn;
+    }
+
+
+}
+?>

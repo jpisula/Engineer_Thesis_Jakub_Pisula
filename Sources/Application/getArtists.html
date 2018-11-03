@@ -1,4 +1,4 @@
-<html>
+<html lang="PL">
 	<head>
 		<title>get artists</title>
 	</head>
@@ -11,28 +11,32 @@
 	<script src="jquery-3.3.1.min.js"></script>
 	<script>
 		$(document).ready(function(){
-		
-			$.ajax({
+
+			let a = $.ajax({
 				// ta linijka odsyła plik do naszego localhosta
 				url: 'http://localhost/',
 				method: 'POST',
 				dataType: 'json',
 				crossDomain: true,
-				data: {query: 'get-artist'}
+				data: {query: 'get-address'}
 			})
 			.done(function(data){
-				
-				var body = '';
+				let body = '';
 
-				for(var i = 0; i < data.length; ++i)
+				console.log(data);
+
+				for(let i = 0; i < data.length; ++i)
 				{
-					body += '<p>' + data[i]['name'] + '</p>';
+					body += '<p>' + data[i]['street'] + '</p>';
 				}
-
+				
 				$('#textBlock').append(body);
 
+			})
+			.fail(function(error){
+				console.log('error');
+				console.log(error);
 			});
-		
 		});
 	</script>
 </html>

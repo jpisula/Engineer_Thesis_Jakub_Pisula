@@ -1,0 +1,14 @@
+body{
+    padding: 0;
+    margin: 0;
+    margin: 0px auto;
+  }
+
+#container>h1 {
+  padding-left: 50%;
+}
+
+#list{
+    font-size:18px;
+    padding-left: 50%;
+  }
