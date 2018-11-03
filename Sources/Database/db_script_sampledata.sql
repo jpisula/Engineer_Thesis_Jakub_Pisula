@@ -13,20 +13,20 @@ INSERT INTO Roles (role_name, events, articles, god) VALUES ('Journalist', 0, 1,
 INSERT INTO Roles (role_name, events, articles, god) VALUES ('User', 1, 0, 0);
 
 -- USERS
-INSERT INTO Users (user_fb_id, user_spotify_id, login, password, age, sex, logged_in, registration_date, role_id, country_id)
-	VALUES ('', '', 'Admin', SHA1('Admin1'), 22, 'M', 0, NOW(), 1, 1);
+INSERT INTO Users (user_fb_id, user_spotify_id, login, password, email, email_validate, age, sex, logged_in, registration_date, role_id, country_id)
+	VALUES ('', '', 'Admin', SHA1('Admin1'), 'admin@admin.pl', 1, 22, 'M', 0, NOW(), 1, 1);
 	-- login: Admin
 	-- password: Admin1
-INSERT INTO Users (user_fb_id, user_spotify_id, login, password, age, sex, logged_in, registration_date, role_id, country_id)
-	VALUES ('', '', 'Kowalsky', SHA1('Kowalska'), 30, 'M', 0, NOW(), 2, 1);
+INSERT INTO Users (user_fb_id, user_spotify_id, login, password, email, email_validate, age, sex, logged_in, registration_date, role_id, country_id)
+	VALUES ('', '', 'Kowalsky', SHA1('Kowalska'), 'Kowalsky@kowalsky.com', 1, 30, 'M', 0, NOW(), 2, 1);
 	-- login: Kowalsky
 	-- password: Kowalska
-INSERT INTO Users (user_fb_id, user_spotify_id, login, password, age, sex, logged_in, registration_date, role_id, country_id)
-	VALUES ('', '', 'User1', SHA1('Userowy'), 19, 'M', 0, NOW(), 3, 1);
+INSERT INTO Users (user_fb_id, user_spotify_id, login, password, email, email_validate, age, sex, logged_in, registration_date, role_id, country_id)
+	VALUES ('', '', 'User1', SHA1('Userowy'), 'user1@user.pl', 1, 19, 'M', 0, NOW(), 3, 1);
 	-- login: User1
 	-- password: Userowy	
-INSERT INTO Users (user_fb_id, user_spotify_id, login, password, age, sex, logged_in, registration_date, role_id, country_id)
-	VALUES ('', '', 'User2', SHA1('Userowa2'), 31, 'K', 0, NOW(), 3, 1);
+INSERT INTO Users (user_fb_id, user_spotify_id, login, password, email, email_validate, age, sex, logged_in, registration_date, role_id, country_id)
+	VALUES ('', '', 'User2', SHA1('Userowa2'), 'user2@user.pl', 1, 31, 'K', 0, NOW(), 3, 1);
 	-- login: User2
 	-- password: Userowa2	
 

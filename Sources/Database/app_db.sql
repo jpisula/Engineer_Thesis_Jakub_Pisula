@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 24 Paź 2018, 23:58
+-- Czas generowania: 03 Lis 2018, 00:12
 -- Wersja serwera: 5.7.23
 -- Wersja PHP: 7.2.10
 
@@ -37,17 +37,19 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `city_id` int(8) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`address_id`),
   KEY `city_id` (`city_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `addresses`
 --
 
 INSERT INTO `addresses` (`address_id`, `street`, `house_num`, `apart_num`, `city_id`) VALUES
-(1, 'Piastów', '10b', NULL, 1),
-(2, 'Mikołowska', '100', '615', 1),
-(3, 'Krakowskie Przedmieście', '48', '50', 2),
-(4, 'Wawel', '5', '1', 3);
+(8, 'Krakowskie Przedmieście', '48', '50', 2),
+(7, 'Mikołowska', '100', '615', 1),
+(6, 'Krakowska', '5665', '34abc', 4),
+(9, 'Katowicka', '5', '7', 1),
+(10, 'Zielonogórska', '5', '70', 1),
+(11, 'Zielonogórska', '5', '70', 1);
 
 -- --------------------------------------------------------
 
@@ -482,6 +484,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_spotify_id` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   `login` varchar(40) COLLATE utf8_polish_ci DEFAULT NULL,
   `password` char(40) COLLATE utf8_polish_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8_polish_ci NOT NULL,
+  `email_validate` bit(1) NOT NULL,
   `age` int(2) DEFAULT NULL,
   `sex` char(1) COLLATE utf8_polish_ci DEFAULT NULL,
   `logged_in` bit(1) DEFAULT NULL,
@@ -491,17 +495,22 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   KEY `role_id` (`role_id`),
   KEY `country_id` (`country_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_fb_id`, `user_spotify_id`, `login`, `password`, `age`, `sex`, `logged_in`, `registration_date`, `role_id`, `country_id`) VALUES
-(1, '', '', 'Admin', '2ec10e4f7cd2159e7ea65d2454f68287ecf81251', 22, 'M', b'0', '2018-10-25 01:58:09', 1, 1),
-(2, '', '', 'Kowalsky', '71e31eb20e81532b538f538c1fb372ec3a22388a', 30, 'M', b'0', '2018-10-25 01:58:09', 2, 1),
-(3, '', '', 'User1', 'fdd417966818209f6c8f66c37220fc33165811c2', 19, 'M', b'0', '2018-10-25 01:58:09', 3, 1),
-(4, '', '', 'User2', 'e9cc031eb059fb518802c7b0932a1b62c670ff95', 31, 'K', b'0', '2018-10-25 01:58:09', 3, 1);
+INSERT INTO `users` (`user_id`, `user_fb_id`, `user_spotify_id`, `login`, `password`, `email`, `email_validate`, `age`, `sex`, `logged_in`, `registration_date`, `role_id`, `country_id`) VALUES
+(1, '', '', 'Admin', '2ec10e4f7cd2159e7ea65d2454f68287ecf81251', 'admin@admin.pl', b'1', 22, 'M', b'0', '2018-10-25 01:58:09', 1, 1),
+(2, '', '', 'Kowalsky', '71e31eb20e81532b538f538c1fb372ec3a22388a', 'Kowalsky@Kowalsky.pl', b'1', 30, 'M', b'0', '2018-10-25 01:58:09', 2, 1),
+(3, '', '', 'User1', 'fdd417966818209f6c8f66c37220fc33165811c2', 'User1@User1.com', b'0', 19, 'M', b'0', '2018-10-25 01:58:09', 3, 1),
+(4, '', '', 'User2', 'e9cc031eb059fb518802c7b0932a1b62c670ff95', 'User2@User2.pl', b'1', 31, 'K', b'0', '2018-10-25 01:58:09', 3, 1),
+(5, NULL, NULL, 'abecadlo', '0aaf40b2e2de14575b44a95661faa59606d06b66', 'abecadlo@abecadlo.pl', b'1', 55, 'K', b'0', '2018-10-29 12:54:46', 3, 2),
+(6, NULL, NULL, 'Kubeczek', '344b4901cbb2e986026ce7cd63db6a2488a26d16', 'Kubeczek@Kubeczek.pl', b'1', 22, 'M', b'0', '2018-10-31 00:27:17', 3, 3),
+(8, NULL, NULL, 'Kubeczekk', '999922057bad8b0fc758ec8baed11e682e7dde8d', 'Kubeczekk@Kubeczek.com', b'0', 22, 'M', b'0', '2018-10-31 00:38:10', 3, 3),
+(11, NULL, NULL, 'NewUser', 'b7d2612d1ab0ae6afe47c5d5d495edcc35b2846d', 'NewUser@NewUser.pl', b'0', 22, 'M', b'0', '2018-11-03 01:03:37', 3, 3),
+(12, NULL, NULL, 'abc', 'a9993e364706816aba3e25717850c26c9cd0d89d', 'abc@abc.pl', b'0', 21, 'M', b'0', '2018-11-03 01:04:36', 3, 1);
 
 -- --------------------------------------------------------
 
