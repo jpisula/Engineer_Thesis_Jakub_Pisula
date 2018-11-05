@@ -293,7 +293,7 @@ class User {
 
 
         if($currentPassword === $validatePassword) {
-            $query = 'UPDATE Users SET password=:password WHERE user_id = :id';
+            $query = 'UPDATE Users SET password=SHA1(:password) WHERE user_id = :id';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':password', $this->password);
             $stmt->bindParam(':id', $this->user_id);
