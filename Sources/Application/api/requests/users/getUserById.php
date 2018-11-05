@@ -22,7 +22,7 @@
         'email' => $user->email,
         'email_validate' => $user->email_validate,
         'age' => $user->age,
-        'sex' => $user->sex,
+        'gender' => $user->gender,
         'logged_in' => $user->logged_in,
         'registration_date' => $user->registration_date,
         'role_name' => $user->role_name,

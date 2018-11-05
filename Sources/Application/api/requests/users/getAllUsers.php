@@ -29,7 +29,7 @@
                 'email' => $row['email'],
                 'email_validate' => $row['email_validate'],
                 'age' => $row['age'],
-                'sex' => $row['sex'],
+                'gender' => $row['gender'],
                 'logged_in' => $row['logged_in'],
                 'registration_date' => $row['registration_date'],
                 'role_name' => $row['role_name'],

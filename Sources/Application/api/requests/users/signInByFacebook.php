@@ -2,7 +2,7 @@
     // Headers
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: PUT');
+    header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     // Includes
@@ -18,21 +18,27 @@
     $data = json_decode(file_get_contents("php://input"));
 
     // Set ID to update
-    $user->user_id = $data->user_id;
+    $user->login = $data->login;
 
     //data to update
+    $user->user_fb_id = $data->user_fb_id;
     $user->age = $data->age;
+    $user->country_name = $data->country;
+    $user->email = $data->email;
     $user->gender = $data->gender;
-    $user->country_name = $data->country_name;
 
     // Update post
-    if($user->updateData()) {
+    $result = $user->signInByFacebook();
+    if($result) {
+        session_start();
+        $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['role'] = $user->role_name;
         echo json_encode(
-            array('message' => 'Data Changed')
+            array('message' => 'Signed In Via Facebook')
         );
     } else {
         echo json_encode(
-            array('message' => 'Data Not Changed')
+            array('message' => 'Sign In Via Facebook Wrong')
         );
     }
 ?>

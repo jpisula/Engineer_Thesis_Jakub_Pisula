@@ -20,7 +20,7 @@
     $user->login = $data->login;
     $user->password = $data->password;
     $user->age = $data->age;
-    $user->sex = $data->sex;
+    $user->gender = $data->gender;
     $user->country_name = $data->country;
     $user->email = $data->email;
 
