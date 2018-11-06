@@ -33,7 +33,7 @@
               <input type="text" name="login" id="login"><br><br>
               Password:<br>
               <input type="password" name="password" id="password"><br><br>
-              <button type="button" onclick="signin()">Sign In!</button>
+              <button type="button" onclick="signin()">Zaloguj</button>
             </form>';
           ?>
 

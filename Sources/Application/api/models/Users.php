@@ -52,7 +52,8 @@ class User {
                                                   age, gender, logged_in, registration_date,  
                                                   role_name, country_name FROM Users u
                                               JOIN Roles r on u.role_id = r.role_id
-                                              JOIN Countries c on c.country_id = u.country_id';
+                                              JOIN Countries c on c.country_id = u.country_id
+                                              ORDER BY user_id';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);

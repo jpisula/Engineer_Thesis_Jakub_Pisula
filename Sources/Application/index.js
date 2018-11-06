@@ -81,14 +81,14 @@ function signin() {
         <input type="number" name="age" id="age" value="`+data.age+`"><br>
         Gender:<br>
         <select name="gender" id="gender" value="`+data.gender+`">
-            <option value="M">Men</option>
-            <option value="K">Women</option>
+            <option value="M">Mężczyzna</option>
+            <option value="K">Kobieta</option>
         </select><br>
         Country:<br>
         <select name="country" id="country" value="`+data.country_name+`">
-            <option value="Poland">Poland</option>
-            <option value="Germany">Germany</option>
-            <option value="England">England</option>
+            <option value="Poland">Polska</option>
+            <option value="Germany">Niemcy</option>
+            <option value="England">Anglia</option>
             <option value="USA">USA</option>
         </select><br>
         <button type="button" onclick="changeUserData(`+user_id+`)">Zaktualizuj dane</button>
