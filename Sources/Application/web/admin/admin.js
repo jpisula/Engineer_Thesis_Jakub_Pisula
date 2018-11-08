@@ -4,11 +4,11 @@ function roleCheck() {
             if(data.role === "Admin") {
                 const html = data.user_id + `<br>` + data.role;
                 document.getElementById("roleCheck").innerHTML = html;
-                loadPage();
+                loadPage(data.user_id);
             } else {
                 const html = 
                 `<p>Musisz być administratorem, aby móc przejśc do panelu administratora</p>
-                <button type="button" onclick="logout()">Log out!</button>`;
+                <button type="button" onclick="logout(`+data.user_id+`)">Log out!</button>`;
                 document.getElementById("roleCheck").innerHTML = html;
             }
         } else {
@@ -25,9 +25,9 @@ function roleCheck() {
     }); 
 }
 
-function loadPage(){
+function loadPage(user_id){
     let html = `
-    <br> <button type="button" onclick="logout()">Log out!</button> <br>
+    <br> <button type="button" onclick="logout(`+user_id+`)">Log out!</button> <br>
     Można działać <br> <br>
     <div id="list">
     <ol>
@@ -81,17 +81,32 @@ function signin() {
 
   }
 
-  function logout() {
+  function logout(user_id) {
     $.ajax({
-              type: "POST",
-              url: 'http://localhost/api/config/session_end.php',
-              data: "",
-          success: function(response) {
-              location.reload(true);
-          }, error: function(error) {
-              console.log(error);
-          }
-          });
+        type: "POST",
+        url: 'http://localhost/api/config/session_end.php',
+        data: "",
+    success: function() {
+        let data = {
+            "user_id": user_id,
+            "state": false
+        }
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost/api/requests/users/setLoggedIn.php',
+            data: JSON.stringify(data),
+        success: function() {
+            location.reload(true); 
+        }, 
+        error: function(error) {
+            console.log(error);
+        }
+        });
+    }, 
+    error: function(error) {
+        console.log(error);
+    }
+    });
   }
 
   function showAllUsers(){

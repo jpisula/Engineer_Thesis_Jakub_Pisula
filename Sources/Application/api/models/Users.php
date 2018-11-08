@@ -5,12 +5,6 @@ require_once(__DIR__ . "/../config/Database");
  * Class User Used for operations on the user table.
  */
 class User {
-/*
- * TODO:
- * 7. łączenie z fb
- * 8. łaczenie ze spotify
- * 9. set avatar
- */
 
     /**
      * @var DB Variable to connect to the database

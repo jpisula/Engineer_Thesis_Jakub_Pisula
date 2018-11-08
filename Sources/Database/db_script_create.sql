@@ -268,6 +268,24 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 );
 
+CREATE TABLE IF NOT EXISTS Comments (
+comment_id int(8) unsigned NOT NULL AUTO_INCREMENT,
+article_id int(8) unsigned,
+event_id int(8) unsigned,
+user_id int(8) unsigned,
+text text,
+PRIMARY KEY (comment_id),
+FOREIGN KEY (article_id) REFERENCES Articles(article_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (event_id) REFERENCES Events(event_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+FOREIGN KEY (user_id) REFERENCES Users(user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+);
+
 CREATE TABLE IF NOT EXISTS Events (
 event_id int(8) unsigned NOT NULL AUTO_INCREMENT,
 name varchar(200),

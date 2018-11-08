@@ -12,59 +12,21 @@
 <body>
 <script src="./index.js"></script>
 <!-- <div id="fb-root"></div> -->
+  <div id="page">
 
-
-  <div id="container">
-    <h1>Gotowe funkcjonalności:</h1>
-    <div id="list">
-      <ol>
-        <li><a href="./web/pages/registration.html">Rejestracja</a></li><br>
-
-        <li>Logowanie <br>
-          <div id="signIn"> </div>  
-          <script> signIn(); </script>    
-        </li> <br>    
-
-        <li>Podgląd danych profilu <br>
-          <div id="prevUserData"></div>
-          <script>prevUserData();</script>
-        </li><br>
-
-        <li> Edycja danych użytkownika <br>
-          <div id="changeData"></div>
-          <script>changeData();</script>
-        </li><br>
-
-        <li> Zmiana hasła użytkownika <br>
-          <div id="changePassword"></div>
-          <script>changePassword();</script>
-        </li><br>
-
-        <li> Panel administratora <br>
-          <div id="adminPanel"></div>
-          <script>adminPanel();</script>
-        </li><br>
-      </ol>
-
-    </div>
   </div>
-
-
-<script>
-
-
-    
-
-  // function fbLogout(){
-  //   FB.logout(function(response){
-  //     location.reload(true);
-  //   });
-  // }
-</script>
+<script> loadPage(); </script>
 </body>
 
 </html>
 
+ <script>  
+    // function fbLogout(){
+    //   FB.logout(function(response){
+    //     location.reload(true);
+    //   });
+    // }
+    </script>
   <!-- <li>Logowanie z Facebookiem <br>
   <?php 
           // if( isset($_SESSION['user_id']) ){

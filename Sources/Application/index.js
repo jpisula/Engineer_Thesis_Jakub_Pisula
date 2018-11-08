@@ -1,9 +1,52 @@
+function loadPage(){
+    let html = `
+    <h1>Gotowe funkcjonalności:</h1>
+    <div id="list">
+      <ol>
+        <li><a href="./web/pages/registration.html">Rejestracja</a></li><br>
+
+        <li>Logowanie <br>
+          <div id="signIn"> </div>   
+        </li> <br>    
+
+        <li>Podgląd danych profilu <br>
+          <div id="prevUserData"></div>
+        </li><br>
+
+        <li> Edycja danych użytkownika <br>
+          <div id="changeData"></div>
+        </li><br>
+
+        <li> Zmiana hasła użytkownika <br>
+          <div id="changePassword"></div>
+        </li><br>
+
+        <li> Usuwanie konta <br>
+          <div id="deleteAcc"></div>
+        </li><br>
+
+        <li> Panel administratora <br>
+          <div id="adminPanel"></div>
+        </li><br>
+
+      </ol>
+
+    </div>`;
+    document.getElementById("page").innerHTML = html;
+    signIn();
+    prevUserData();
+    changeData();
+    changePassword();
+    deleteAccBtn();
+    adminPanel();
+}
+
 function signIn() {
     $.get("http://localhost/api/config/getSession.php", function(data) {
         if(data.user_id) {
             const html = 
             data.user_id +` <br> `+ data.role +`
-            <br> <button type="button" onclick="logout()">Log out!</button> <br>`;
+            <br> <button type="button" onclick="logout(`+data.user_id+`)">Log out!</button> <br>`;
             document.getElementById("signIn").innerHTML = html;
         } else {
             const html= `
@@ -37,13 +80,28 @@ function logIn() {
 }
 
 
-function logout() {
+function logout(user_id) {
     $.ajax({
             type: "POST",
             url: 'http://localhost/api/config/session_end.php',
             data: "",
         success: function() {
-            location.reload(true); }, 
+            let data = {
+                "user_id": user_id,
+                "state": false
+            }
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost/api/requests/users/setLoggedIn.php',
+                data: JSON.stringify(data),
+            success: function() {
+                location.reload(true); 
+            }, 
+            error: function(error) {
+                console.log(error);
+            }
+            });
+        }, 
         error: function(error) {
             console.log(error);
         }
@@ -217,6 +275,46 @@ function changeUserPassword(user_id) {
         }); 
 
     }
+}
+
+function deleteAccBtn(){
+    $.get("http://localhost/api/config/getSession.php", function(data) {
+        if(data.user_id) {
+            const html = 
+            `<button type="button" onclick="deleteAcc(`+data.user_id+`)">Usuń konto</button>`;
+            document.getElementById("deleteAcc").innerHTML = html;
+        } else {
+            const html= `
+            <p>Użytkownik niezalogowany.</p>`;
+            document.getElementById("deleteAcc").innerHTML = html;
+        }
+    }); 
+}
+
+function deleteAcc(user_id) {
+    let data = {
+        "user_id" : user_id
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost/api/requests/users/deleteUser.php',
+        data: JSON.stringify(data),
+    success: function() {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost/api/config/session_end.php',
+            data: "",
+        success: function() {
+           location.reload();
+        }, 
+        error: function(error) {
+            console.log(error);
+        }
+    });
+    }, error: function(response) {
+        console.log(response);
+    }
+    }); 
 }
 
 function adminPanel(){
