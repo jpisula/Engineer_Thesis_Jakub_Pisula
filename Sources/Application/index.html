@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Engineer Thesis</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+
+<body>
+<script src="./index.js"></script>
+<!-- <div id="fb-root"></div> -->
+
+
+  <div id="container">
+    <h1>Gotowe funkcjonalności:</h1>
+    <div id="list">
+      <ol>
+        <li><a href="./web/pages/registration.html">Rejestracja</a></li><br>
+
+        <li>Logowanie <br>
+          <div id="signIn"> </div>  
+          <script> signIn(); </script>    
+        </li> <br>    
+
+        <li>Podgląd danych profilu <br>
+          <div id="prevUserData"></div>
+          <script>prevUserData();</script>
+        </li><br>
+
+        <li> Edycja danych użytkownika <br>
+          <div id="changeData"></div>
+          <script>changeData();</script>
+        </li><br>
+
+        <li> Zmiana hasła użytkownika <br>
+          <div id="changePassword"></div>
+          <script>changePassword();</script>
+        </li><br>
+
+        <li> Panel administratora <br>
+          <div id="adminPanel"></div>
+          <script>adminPanel();</script>
+        </li><br>
+      </ol>
+
+    </div>
+  </div>
+
+
+<script>
+
+
+    
+
+  // function fbLogout(){
+  //   FB.logout(function(response){
+  //     location.reload(true);
+  //   });
+  // }
+</script>
+</body>
+
+</html>
+
+  <!-- <li>Logowanie z Facebookiem <br>
+  <?php 
+          // if( isset($_SESSION['user_id']) ){
+          //   echo $_SESSION['user_id'] . ' <br>' . $_SESSION['role'] .'
+          //   <br> <button type="button" onclick="fbLogout()">Log out!</button> <br>';
+          // } else echo 
+          // ' 
+          // <fb:login-button
+          // id="fb-btn"
+          // scope="public_profile,email,user_birthday,user_gender,user_location"
+          // onlogin="checkLoginState();">
+          // </fb:login-button>';
+          ?>
+
+          <div id="fblogin"></div>
+        </li> -->

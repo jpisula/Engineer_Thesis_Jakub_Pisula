@@ -8,57 +8,68 @@
       
 </head>
 <body>
-    <a href="./../../index.php"><h3>Powrót!</h3></a>
-    <form id="registration">
-            Login:<br>
-            <input type="text" name="login" id="login"><br><br>
-            Password:<br>
-            <input type="password" name="password" id="password"><br><br>
-            Email:<br>
-            <input type="text" name="email" id="email"><br><br>
-            Wiek:<br>
-            <input type="number" name="age" id="age"><br><br>
-            Płeć:<br>
-            <select name="gender" id="gender">
-                <option value="M">Mężczyzna</option>
-                <option value="K">Kobieta</option>
-            </select><br><br>
-            Państwo:<br>
-            <select name="country" id="country">
-                <option value="Poland">Polska</option>
-                <option value="Germany">Niemcy</option>
-                <option value="England">Anglia</option>
-                <option value="USA">USA</option>
-            </select><br><br>
-            <button type="button" onclick="send()">Zaloguj się</button>
-    </form>
+        <script>
+                function registerForm() {
+                    $.get("http://localhost/api/requests/countries/getCountries.php", function(cdata) {
+                    let select = `
+                    <select name="country" id="country">`;
+                        cdata.data.forEach(element => {               
+                            select+=`<option value="`+ element.country_name +`">`+ element.country_name +`</option>`;
+                        });
+                        select += `</select><br>`;
+        
+                    let html = `Login:<br>
+                    <input type="text" name="login" id="login"><br><br>
+                    Password:<br>
+                    <input type="password" name="password" id="password"><br><br>
+                    Email:<br>
+                    <input type="text" name="email" id="email"><br><br>
+                    Wiek:<br>
+                    <input type="number" name="age" id="age"><br><br>
+                    Płeć:<br>
+                    <select name="gender" id="gender">
+                        <option value="M">Mężczyzna</option>
+                        <option value="K">Kobieta</option>
+                    </select><br><br>
+                    Państwo:<br>`+ select +`
+                    <br>
+                    <button type="button" onclick="send()">Zarejestruj się!</button>
+                    </form>`;
+                    document.getElementById("reg").innerHTML = html;
+                });
+                    
+                }
+        
+                function send() {
+                    console.log("aa");
+                    console.log($("#registration").serialize()); // returns all the data in your form
+                    let data={
+                        "login": $('#login').val(),
+                        "password": $('#password').val(),
+                        "email": $('#email').val(),
+                        "age": $('#age').val(),
+                        "gender": $('#gender').val(),
+                        "country": $('#country').val(),
+                    }
+                    console.log(data);
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://localhost/api/requests/users/CreateNewUser.php',
+                        data: JSON.stringify(data),
+                    success: function(response) {
+                    //success message mybe...
+                        console.log(response);
+                    }, error: function() {
+                        console.log("baad");
+                    }
+                    }); 
+        
+                }
+            </script>
 
-    <script>
-        function send() {
-            console.log("aa");
-            console.log($("#registration").serialize()); // returns all the data in your form
-            let data={
-                "login": $('#login').val(),
-                "password": $('#password').val(),
-                "email": $('#email').val(),
-                "age": $('#age').val(),
-                "gender": $('#gender').val(),
-                "country": $('#country').val(),
-            }
-            console.log(data);
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost/api/requests/users/CreateNewUser.php',
-                data: JSON.stringify(data),
-            success: function(response) {
-            //success message mybe...
-                console.log(response);
-            }, error: function() {
-                console.log("baad");
-            }
-            }); 
 
-        }
-    </script>
+    <a href="./../../index.html"><h3>Powrót!</h3></a>
+    <div id="reg"></div>
+    <script>registerForm();</script>
 </body>
 </html>

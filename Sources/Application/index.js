@@ -1,39 +1,71 @@
-function signin() {
+function signIn() {
+    $.get("http://localhost/api/config/getSession.php", function(data) {
+        if(data.user_id) {
+            const html = 
+            data.user_id +` <br> `+ data.role +`
+            <br> <button type="button" onclick="logout()">Log out!</button> <br>`;
+            document.getElementById("signIn").innerHTML = html;
+        } else {
+            const html= `
+            <form id="signin">
+              Login:<br>
+              <input type="text" name="login" id="login"><br><br>
+              Password:<br>
+              <input type="password" name="password" id="password"><br><br>
+              <button type="button" onclick="logIn()">Zaloguj</button>
+            </form>`;
+            document.getElementById("signIn").innerHTML = html;
+        }
+    }); 
+}
+
+function logIn() {
     var data={
         "login": $('#login').val(),
         "password": $('#password').val(),
     }
-    console.log(data);
     $.ajax({
         type: "POST",
         url: 'http://localhost/api/requests/users/signIn.php',
         data: JSON.stringify(data),
-    success: function() {
-    //success message mybe...
-        console.log("hurra");
+    success: function(response) {
         location.reload();
-    }, error: function() {
-        console.log("baad");
+    }, error: function(response) {
+        console.log(response);
     }
     }); 
+}
 
-  }
 
-  function logout() {
+function logout() {
     $.ajax({
-              type: "POST",
-              url: 'http://localhost/api/config/session_end.php',
-              data: "",
-          success: function(response) {
-              location.reload(true);
-          }, error: function(error) {
-              console.log(error);
-          }
-          });
-  }
+            type: "POST",
+            url: 'http://localhost/api/config/session_end.php',
+            data: "",
+        success: function() {
+            location.reload(true); }, 
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
 
-  
-  function loadUserData(user_id) {
+function prevUserData(){
+    $.get("http://localhost/api/config/getSession.php", function(data) {
+        if(data.user_id) {
+            const html = 
+            `<div id="user_data"></div>`;
+            document.getElementById("prevUserData").innerHTML = html;
+            loadUserData(data.user_id);
+        } else {
+            const html= `
+            <p>Użytkownik niezalogowany.</p>`;
+            document.getElementById("prevUserData").innerHTML = html;
+        }
+    }); 
+}
+
+function loadUserData(user_id) {
     $.get("http://localhost/api/requests/users/getUserById?id="+user_id, function(data) {
         let html = `<table>
         <tr><th></th><th></th></tr>
@@ -72,40 +104,61 @@ function signin() {
         document.getElementById("user_data").innerHTML = html;
         
     });
-  }
+}
 
-  function loadFormUserData(user_id) {
+function changeData() {
+    $.get("http://localhost/api/config/getSession.php", function(data) {
+        if(data.user_id) {
+            const html = 
+            `<div id="user_data_change"></div>`;
+            document.getElementById("changeData").innerHTML = html;
+            loadFormUserData(data.user_id);
+        } else {
+            const html= `
+            <p>Użytkownik niezalogowany.</p>`;
+            document.getElementById("changeData").innerHTML = html;
+        }
+    }); 
+}
+
+function loadFormUserData(user_id) {
     $.get("http://localhost/api/requests/users/getUserById?id="+user_id, function(data) {
-        let html = `<form id="datachange">
-        Age:<br>
-        <input type="number" name="age" id="age" value="`+data.age+`"><br>
-        Gender:<br>
-        <select name="gender" id="gender" value="`+data.gender+`">
-            <option value="M">Mężczyzna</option>
-            <option value="K">Kobieta</option>
-        </select><br>
-        Country:<br>
-        <select name="country" id="country" value="`+data.country_name+`">
-            <option value="Poland">Polska</option>
-            <option value="Germany">Niemcy</option>
-            <option value="England">Anglia</option>
-            <option value="USA">USA</option>
-        </select><br>
-        <button type="button" onclick="changeUserData(`+user_id+`)">Zaktualizuj dane</button>
-        </form>`;
-        document.getElementById("user_data_change").innerHTML = html;
-        
-    });
-  }
+        $.get("http://localhost/api/requests/countries/getCountries.php", function(cdata) {
+            let select = `
+            <select name="country" id="country" value="`+data.country_name+`">`;
+                cdata.data.forEach(element => {
+                    if(element.country_name == data.country_name){
+                        select+=`<option value="`+ element.country_name +`" selected=true>`+ element.country_name +`</option>`;
+                    } else {
+                        select+=`<option value="`+ element.country_name +`">`+ element.country_name +`</option>`;
+                    }
+                });
+                select += `</select>`;
 
-  function changeUserData(user_id) {
+            let html = `<form id="datachange">
+            Age:<br>
+            <input type="number" name="age" id="age" value="`+data.age+`"><br>
+            Gender:<br>
+            <select name="gender" id="gender" value="`+data.gender+`">
+                <option value="M">Mężczyzna</option>
+                <option value="K">Kobieta</option>
+            </select><br>
+            Country:<br>`+ select +`
+            <br>
+            <button type="button" onclick="changeUserData(`+user_id+`)">Zaktualizuj dane</button>
+            </form>`;
+            document.getElementById("user_data_change").innerHTML = html;
+        });  
+    });
+}
+
+function changeUserData(user_id) {
     var data={
         "user_id": user_id,
         "age": $('#age').val(),
         "gender": $('#gender').val(),
         "country_name": $('#country').val(),
     }
-    console.log(data);
     $.ajax({
         type: 'PUT',
         url: 'http://localhost/api/requests/users/updateData.php',
@@ -117,10 +170,32 @@ function signin() {
         console.log(response);
     }
     }); 
-  }
+}
 
-  function changeUserPassword(user_id) {
-      console.log(user_id);
+function changePassword() {
+    $.get("http://localhost/api/config/getSession.php", function(data) {
+        if(data.user_id) {
+            const html = 
+            `<form id="passwordchange">
+            Podaj stare hasło:<br>
+            <input type="password" name="oldPsw" id="oldPsw"><br>
+            Podaj nowe hasło:<br>
+            <input type="password" name="newPsw" id="newPsw"><br>
+            Potwierdź nowe hasło:<br>
+            <input type="password" name="valNewPsw" id="valNewPsw"><br>
+            <button type="button" onclick="changeUserPassword(`+data.user_id+`)">Zmień hasło</button>
+            </form>
+            <div id="info"></div>`;
+            document.getElementById("changePassword").innerHTML = html;
+        } else {
+            const html= `
+            <p>Użytkownik niezalogowany.</p>`;
+            document.getElementById("changePassword").innerHTML = html;
+        }
+    }); 
+}
+
+function changeUserPassword(user_id) {
     if($('#newPsw').val() != $('#valNewPsw').val()){
         document.getElementById("info").innerHTML = '<p>Podano różne nowe hasła!</p>'
     } else {
@@ -142,7 +217,27 @@ function signin() {
         }); 
 
     }
-  }
+}
+
+function adminPanel(){
+    $.get("http://localhost/api/config/getSession.php", function(data) {
+        if(data.user_id) {
+            if(data.role === "Admin") {
+                const html = 
+                `<a href="./web/admin/admin.html">Panel administratora</a>`;
+                document.getElementById("adminPanel").innerHTML = html;
+            } else {
+                const html = 
+                `<p>Musisz być administratorem, aby móc przejśc do panelu administratora</p>`;
+                document.getElementById("adminPanel").innerHTML = html;
+            }
+        } else {
+            const html= `
+            <p>Użytkownik niezalogowany.</p>`;
+            document.getElementById("adminPanel").innerHTML = html;
+        }
+    }); 
+}
 
 
   /*

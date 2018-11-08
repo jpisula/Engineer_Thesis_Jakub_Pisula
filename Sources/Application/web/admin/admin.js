@@ -1,3 +1,65 @@
+function roleCheck() {
+    $.get("http://localhost/api/config/getSession.php", function(data) {
+        if(data.user_id) {
+            if(data.role === "Admin") {
+                const html = data.user_id + `<br>` + data.role;
+                document.getElementById("roleCheck").innerHTML = html;
+                loadPage();
+            } else {
+                const html = 
+                `<p>Musisz być administratorem, aby móc przejśc do panelu administratora</p>
+                <button type="button" onclick="logout()">Log out!</button>`;
+                document.getElementById("roleCheck").innerHTML = html;
+            }
+        } else {
+            const html= `
+            <form id="signin">
+                Login:<br>
+                <input type="text" name="login" id="login"><br><br>
+                Password:<br>
+                <input type="password" name="password" id="password"><br><br>
+                <button type="button" onclick="signin()">Sign In!</button>
+            </form>`;
+            document.getElementById("roleCheck").innerHTML = html;
+        }
+    }); 
+}
+
+function loadPage(){
+    let html = `
+    <br> <button type="button" onclick="logout()">Log out!</button> <br>
+    Można działać <br> <br>
+    <div id="list">
+    <ol>
+        <li>Podgląd wszystkich użytkowników<br>
+        <div id="showAllUsers"></div>`;
+    
+    html+= `
+        </li><br> 
+        <li>Edycja danych użytkowników<br>
+        <div id="changeUserData"></div>`;
+    
+    html+= `
+        </li><br> 
+            <li>Zmień rolę użytkownika<br>
+                <div id="changeUserRole"></div>`;
+    
+    html+=`
+        </li><br> 
+            <li>Usuń użytkownika<br>
+                <div id="deleteUser"></div>`;
+    
+    html+=`
+        </li><br> 
+        </ol>
+    </div>`;
+    document.getElementById("adminPage").innerHTML=html;
+    showAllUsers();
+    loadChangeUserData();
+    loadChangeUserRole();
+    loadDeleteUser();
+}
+
 function signin() {
     var data={
         "login": $('#login').val(),
@@ -83,25 +145,32 @@ function signin() {
   function loadchangeUserDataForm() {
       user_id = $('#id').val();
     $.get("http://localhost/api/requests/users/getUserById?id="+user_id, function(data) {
-        let html = `<form id="datachange">
-        Age:<br>
-        <input type="number" name="age" id="age" value="`+data.age+`"><br>
-        Gender:<br>
-        <select name="gender" id="gender" value="`+data.gender+`">
-            <option value="M">Mężczyzna</option>
-            <option value="K">Kobieta</option>
-        </select><br>
-        Country:<br>
-        <select name="country" id="country" value="`+data.country_name+`">
-            <option value="Poland">Polska</option>
-            <option value="Germany">Niemcy</option>
-            <option value="England">Anglia</option>
-            <option value="USA">USA</option>
-        </select><br>
-        <button type="button" onclick="changeUserData(`+user_id+`)">Zaktualizuj dane</button>
-        </form>`;
-        document.getElementById("changeUserData").innerHTML = html;
-        
+        $.get("http://localhost/api/requests/countries/getCountries.php", function(cdata) {
+            let select = `
+            <select name="country" id="country" value="`+data.country_name+`">`;
+                cdata.data.forEach(element => {
+                    if(element.country_name == data.country_name){
+                        select+=`<option value="`+ element.country_name +`" selected=true>`+ element.country_name +`</option>`;
+                    } else {
+                        select+=`<option value="`+ element.country_name +`">`+ element.country_name +`</option>`;
+                    }
+                });
+                select += `</select>`;
+
+            let html = `<form id="datachange">
+            Age:<br>
+            <input type="number" name="age" id="age" value="`+data.age+`"><br>
+            Gender:<br>
+            <select name="gender" id="gender" value="`+data.gender+`">
+                <option value="M">Mężczyzna</option>
+                <option value="K">Kobieta</option>
+            </select><br>
+            Country:<br>`+ select +`
+            <br>
+            <button type="button" onclick="changeUserData(`+user_id+`)">Zaktualizuj dane</button>
+            </form>`;
+            document.getElementById("changeUserData").innerHTML = html;
+        });       
     });
   }
 
