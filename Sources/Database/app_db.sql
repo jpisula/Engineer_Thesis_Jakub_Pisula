@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 08 Lis 2018, 19:07
+-- Czas generowania: 08 Lis 2018, 22:23
 -- Wersja serwera: 5.7.23
 -- Wersja PHP: 7.2.10
 
@@ -90,23 +90,20 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `title` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `author_id` int(8) UNSIGNED DEFAULT NULL,
-  `photo_id` int(8) UNSIGNED DEFAULT NULL,
   `text_id` int(8) UNSIGNED DEFAULT NULL,
-  `mod_id` int(8) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`article_id`),
   KEY `author_id` (`author_id`),
-  KEY `photo_id` (`photo_id`),
-  KEY `text_id` (`text_id`),
-  KEY `mod_id` (`mod_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+  KEY `text_id` (`text_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `articles`
 --
 
-INSERT INTO `articles` (`article_id`, `title`, `create_date`, `author_id`, `photo_id`, `text_id`, `mod_id`) VALUES
-(1, 'Lorem Ipsum', '2018-10-25 01:58:09', 1, NULL, 1, NULL),
-(2, 'Lorem Ipsum2', '2018-10-25 01:58:09', 2, NULL, 2, NULL);
+INSERT INTO `articles` (`article_id`, `title`, `create_date`, `author_id`, `text_id`) VALUES
+(1, 'Lorem Ipsum', '2018-10-25 01:58:09', 1, 1),
+(2, 'Lorem Ipsum2', '2018-10-25 01:58:09', 2, 2),
+(22, 'Nowy artykuł', '2018-11-08 22:43:12', 1, 25);
 
 -- --------------------------------------------------------
 
@@ -217,22 +214,20 @@ CREATE TABLE IF NOT EXISTS `events` (
   `user_id` int(8) UNSIGNED DEFAULT NULL,
   `photo_id` int(8) UNSIGNED DEFAULT NULL,
   `text_id` int(8) UNSIGNED DEFAULT NULL,
-  `mod_id` int(8) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`event_id`),
   KEY `address_id` (`address_id`),
   KEY `user_id` (`user_id`),
   KEY `photo_id` (`photo_id`),
-  KEY `text_id` (`text_id`),
-  KEY `mod_id` (`mod_id`)
+  KEY `text_id` (`text_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `events`
 --
 
-INSERT INTO `events` (`event_id`, `name`, `start_time`, `end_time`, `create_date`, `address_id`, `user_id`, `photo_id`, `text_id`, `mod_id`) VALUES
-(1, 'Impreza u senatorów', '2018-11-21 14:00:00', '2018-11-22 05:00:00', '2018-10-25 01:58:09', 3, 1, NULL, 1, NULL),
-(2, 'Impreza w COIGU', '2019-11-21 14:00:00', '2019-10-25 05:00:00', '2018-10-25 01:58:09', 2, 2, NULL, 2, NULL);
+INSERT INTO `events` (`event_id`, `name`, `start_time`, `end_time`, `create_date`, `address_id`, `user_id`, `photo_id`, `text_id`) VALUES
+(1, 'Impreza u senatorów', '2018-11-21 14:00:00', '2018-11-22 05:00:00', '2018-10-25 01:58:09', 3, 1, NULL, 1),
+(2, 'Impreza w COIGU', '2019-11-21 14:00:00', '2019-10-25 05:00:00', '2018-10-25 01:58:09', 2, 2, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -288,21 +283,6 @@ INSERT INTO `genres` (`genre_id`, `typ`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `modifications`
---
-
-DROP TABLE IF EXISTS `modifications`;
-CREATE TABLE IF NOT EXISTS `modifications` (
-  `mod_id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int(8) UNSIGNED DEFAULT NULL,
-  `mod_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`mod_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktura tabeli dla tabeli `ordered_songs`
 --
 
@@ -343,8 +323,19 @@ DROP TABLE IF EXISTS `photos`;
 CREATE TABLE IF NOT EXISTS `photos` (
   `photo_id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `photo_path` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
-  PRIMARY KEY (`photo_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+  `article_id` int(8) UNSIGNED DEFAULT NULL,
+  `event_id` int(8) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`photo_id`),
+  KEY `article_id` (`article_id`),
+  KEY `event_id` (`event_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `photos`
+--
+
+INSERT INTO `photos` (`photo_id`, `photo_path`, `article_id`, `event_id`) VALUES
+(15, 'E:\\Programming\\Projects\\Engineer_Thesis_Jakub_Pisula\\Sources\\Application\\api\\models\\..\\uploads\\Articles\\22_ja.jpg', 22, NULL);
 
 -- --------------------------------------------------------
 
@@ -453,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `texts` (
   `text` mediumtext COLLATE utf8_polish_ci,
   `text_short` mediumtext COLLATE utf8_polish_ci,
   PRIMARY KEY (`text_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `texts`
@@ -462,7 +453,8 @@ CREATE TABLE IF NOT EXISTS `texts` (
 INSERT INTO `texts` (`text_id`, `text`, `text_short`) VALUES
 (1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut condimentum ligula quis libero mollis malesuada. Suspendisse vitae dignissim quam. In eros dolor, dignissim a elementum et, congue a eros. Donec est odio, egestas id ultrices id, blandit sit amet nibh. Nullam at arcu odio. Aenean congue orci mi, ut vehicula sapien malesuada vitae. Etiam ut urna sem. Aliquam dapibus mollis eleifend. Phasellus enim velit, tincidunt ut nisl eget, cursus maximus dolor. Maecenas lacus neque, pretium non mi vitae, vestibulum congue turpis. Curabitur interdum laoreet turpis in venenatis. Integer consectetur aliquam enim, sit amet feugiat sem dictum at.\r\nAliquam erat volutpat. Nullam at pellentesque purus. Nulla facilisi. Quisque scelerisque eleifend orci, sit amet dapibus lectus sodales eu. Ut nec mi eget metus rutrum scelerisque et eu arcu. Pellentesque a vehicula nibh. Sed ligula quam, lacinia sed erat sit amet, tincidunt placerat velit. Nulla ut libero nec erat consectetur mattis vitae ut sem. Maecenas vel porta erat, ac faucibus dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras porta, enim a fermentum posuere, nulla nisi interdum sem, et convallis mi odio sit amet mauris. Phasellus molestie, nunc ac ultricies maximus, sem enim semper eros, nec vulputate sem erat id turpis. Fusce vitae magna ex. Nulla auctor mi vitae eros tempor, eget egestas mi mattis. Pellentesque ut facilisis arcu, non ultricies arcu.\r\nPraesent erat quam, ornare non ligula in, consequat feugiat sem. Aenean egestas nisi erat, ut ornare sem suscipit at. Cras eu mollis metus. Nam sit amet feugiat tortor, quis egestas nunc. Fusce lectus neque, semper a arcu vestibulum, cursus tristique libero. Proin euismod, ex vitae dictum eleifend, augue erat aliquet mauris, et fermentum tellus nisi ac sem. Pellentesque mattis accumsan convallis. Quisque facilisis lobortis tincidunt. Nulla ornare lorem vel sapien vulputate, vitae suscipit nisi viverra. Ut auctor ipsum urna, at tristique nibh sollicitudin eget. Vestibulum vitae aliquam sem. Sed vitae ligula non nibh suscipit volutpat.\r\nMorbi ut vulputate tellus. Phasellus sapien tellus, ornare interdum nunc ac, facilisis convallis justo. Pellentesque dignissim dapibus purus at finibus. In hac habitasse platea dictumst. Proin ac justo mattis, cursus risus pharetra, porttitor lectus. Proin non mattis dolor. Nulla magna nunc, mollis sed dictum ac, pulvinar quis elit. Sed malesuada erat vel ligula egestas, ut fermentum risus suscipit. Sed et leo leo. Curabitur blandit dolor vel eleifend viverra. Aenean consectetur auctor justo, hendrerit condimentum orci egestas in. Curabitur ac metus felis. Sed viverra quam dui, nec lacinia turpis vulputate quis.\r\nInteger venenatis est at arcu tempus vestibulum. Pellentesque fermentum mollis diam vitae aliquet. Proin efficitur, leo ut pellentesque vehicula, justo purus lobortis elit, nec tincidunt dui nulla vitae lectus. Mauris consectetur posuere tortor sed pellentesque. Vestibulum non varius sapien, a consectetur risus. Donec nec libero fringilla, condimentum odio sit amet, ullamcorper ante. Pellentesque euismod hendrerit rutrum. Curabitur sed ultrices nulla. Curabitur luctus blandit augue, malesuada blandit enim viverra ut. Proin tempus diam a tincidunt lacinia. Nam consequat vehicula justo a tempus. Duis lobortis, mauris ac gravida auctor, orci ipsum placerat sem, in imperdiet libero quam id enim.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut condimentum ligula quis libero mollis malesuada. Suspendisse vitae dignissim quam. In eros dolor, dignissim a elementum et, congue a eros. Donec est odio, egestas id ultrices id, blandit sit amet nibh. Nullam at arcu odio. Aenean congue orci mi, ut vehicula sapien malesuada vitae. Etiam ut urna sem. Aliquam dapibus mollis eleifend. Phasellus enim velit, tincidunt ut nisl eget, cursus maximus dolor. Maecenas lacus neque, pretium non mi vitae, vestibulum congue turpis. Curabitur interdum laoreet turpis in venenatis. Integer consectetur aliquam enim, sit amet feugiat sem dictum at.'),
 (2, '22Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut condimentum ligula quis libero mollis malesuada. Suspendisse vitae dignissim quam. In eros dolor, dignissim a elementum et, congue a eros. Donec est odio, egestas id ultrices id, blandit sit amet nibh. Nullam at arcu odio. Aenean congue orci mi, ut vehicula sapien malesuada vitae. Etiam ut urna sem. Aliquam dapibus mollis eleifend. Phasellus enim velit, tincidunt ut nisl eget, cursus maximus dolor. Maecenas lacus neque, pretium non mi vitae, vestibulum congue turpis. Curabitur interdum laoreet turpis in venenatis. Integer consectetur aliquam enim, sit amet feugiat sem dictum at.\r\nAliquam erat volutpat. Nullam at pellentesque purus. Nulla facilisi. Quisque scelerisque eleifend orci, sit amet dapibus lectus sodales eu. Ut nec mi eget metus rutrum scelerisque et eu arcu. Pellentesque a vehicula nibh. Sed ligula quam, lacinia sed erat sit amet, tincidunt placerat velit. Nulla ut libero nec erat consectetur mattis vitae ut sem. Maecenas vel porta erat, ac faucibus dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras porta, enim a fermentum posuere, nulla nisi interdum sem, et convallis mi odio sit amet mauris. Phasellus molestie, nunc ac ultricies maximus, sem enim semper eros, nec vulputate sem erat id turpis. Fusce vitae magna ex. Nulla auctor mi vitae eros tempor, eget egestas mi mattis. Pellentesque ut facilisis arcu, non ultricies arcu.\r\nPraesent erat quam, ornare non ligula in, consequat feugiat sem. Aenean egestas nisi erat, ut ornare sem suscipit at. Cras eu mollis metus. Nam sit amet feugiat tortor, quis egestas nunc. Fusce lectus neque, semper a arcu vestibulum, cursus tristique libero. Proin euismod, ex vitae dictum eleifend, augue erat aliquet mauris, et fermentum tellus nisi ac sem. Pellentesque mattis accumsan convallis. Quisque facilisis lobortis tincidunt. Nulla ornare lorem vel sapien vulputate, vitae suscipit nisi viverra. Ut auctor ipsum urna, at tristique nibh sollicitudin eget. Vestibulum vitae aliquam sem. Sed vitae ligula non nibh suscipit volutpat.\r\nMorbi ut vulputate tellus. Phasellus sapien tellus, ornare interdum nunc ac, facilisis convallis justo. Pellentesque dignissim dapibus purus at finibus. In hac habitasse platea dictumst. Proin ac justo mattis, cursus risus pharetra, porttitor lectus. Proin non mattis dolor. Nulla magna nunc, mollis sed dictum ac, pulvinar quis elit. Sed malesuada erat vel ligula egestas, ut fermentum risus suscipit. Sed et leo leo. Curabitur blandit dolor vel eleifend viverra. Aenean consectetur auctor justo, hendrerit condimentum orci egestas in. Curabitur ac metus felis. Sed viverra quam dui, nec lacinia turpis vulputate quis.\r\nInteger venenatis est at arcu tempus vestibulum. Pellentesque fermentum mollis diam vitae aliquet. Proin efficitur, leo ut pellentesque vehicula, justo purus lobortis elit, nec tincidunt dui nulla vitae lectus. Mauris consectetur posuere tortor sed pellentesque. Vestibulum non varius sapien, a consectetur risus. Donec nec libero fringilla, condimentum odio sit amet, ullamcorper ante. Pellentesque euismod hendrerit rutrum. Curabitur sed ultrices nulla. Curabitur luctus blandit augue, malesuada blandit enim viverra ut. Proin tempus diam a tincidunt lacinia. Nam consequat vehicula justo a tempus. Duis lobortis, mauris ac gravida auctor, orci ipsum placerat sem, in imperdiet libero quam id enim.', '22Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut condimentum ligula quis libero mollis malesuada. Suspendisse vitae dignissim quam. In eros dolor, dignissim a elementum et, congue a eros. Donec est odio, egestas id ultrices id, blandit sit amet nibh. Nullam at arcu odio. Aenean congue orci mi, ut vehicula sapien malesuada vitae. Etiam ut urna sem. Aliquam dapibus mollis eleifend. Phasellus enim velit, tincidunt ut nisl eget, cursus maximus dolor. Maecenas lacus neque, pretium non mi vitae, vestibulum congue turpis. Curabitur interdum laoreet turpis in venenatis. Integer consectetur aliquam enim, sit amet feugiat sem dictum at.'),
-(3, 'Event longtext', 'Event short text');
+(3, 'Event longtext', 'Event short text'),
+(25, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel mi mollis, tempus ante nec, congue elit. Etiam accumsan mauris et nisl mattis, auctor mollis libero rhoncus. Quisque laoreet eros eu massa dignissim, non laoreet urna tincidunt. Fusce a mollis sapien. Nullam facilisis tempus diam, at dictum turpis sodales ut. Cras porta placerat orci, ut congue nunc posuere nec. Proin blandit porttitor metus ut laoreet. Etiam quis dapibus purus.\n\nAenean accumsan eget risus eget pretium. Aenean auctor leo eget purus dapibus molestie. Duis eu lacus eu ante tincidunt pellentesque nec a quam. Aliquam erat volutpat. Morbi sagittis cursus nunc, at commodo nisl facilisis suscipit. Fusce metus ante, vehicula et iaculis eget, ornare nec ipsum. Aenean in lacus dui. Proin vitae tellus sit amet neque semper cursus ac et massa.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel mi mollis, tempus ante nec, congue elit. Etiam accumsan mauris et nisl mattis, auctor mollis libero rhoncus. Quisque laoreet eros eu massa dignissim, non laoreet urna tincidunt. Fusce a mollis sapien. Nullam facilisis tempus diam, at dictum turpis sodales ut. Cras porta placerat orci, ut congue nunc posuere nec. Proin blandit porttitor metus ut laoreet. Etiam quis dapibus purus.');
 
 -- --------------------------------------------------------
 
