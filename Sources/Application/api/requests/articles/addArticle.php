@@ -29,11 +29,17 @@
         $article->text_id = $text->text_id;
         if($article->addArticle()){
             $photo->article_id = $article->article_id;
-            if($photo->addArticlePhoto()){
-                echo json_encode(
-                    array('message' => 'Article Added With Photo!')
-                );
-            } else {
+            try {
+                if ($photo->addArticlePhoto()) {
+                    echo json_encode(
+                        array('message' => 'Article Added With Photo!')
+                    );
+                } else {
+                    echo json_encode(
+                        array('message' => 'Article Added Without Photo!')
+                    );
+                }
+            } catch(Exception $e) {
                 echo json_encode(
                     array('message' => 'Article Added Without Photo!')
                 );

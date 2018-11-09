@@ -34,7 +34,7 @@ class Article {
                                               JOIN Users u on u.user_id = a.author_id
                                               LEFT JOIN Photos p on p.article_id = a.article_id
                                               JOIN Texts t on t.text_id = a.text_id
-                                              ORDER BY create_date
+                                              ORDER BY create_date desc 
                                               LIMIT 6';
 
         // Prepare statement
@@ -108,6 +108,100 @@ class Article {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->article_id = $row['article_id'];
+    }
+
+    public function getAllUserArticles() {
+        $query = 'SELECT a.article_id, u.user_id, u.login, title, t.text_short, p.photo_path, create_date
+                  FROM Articles a JOIN users u on u.user_id = a.author_id
+                  JOIN Texts t on t.text_id = a.text_id
+                  LEFT JOIN Photos p on p.article_id = a.article_id
+                  WHERE a.author_id = ?';
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->author_id);
+        // Execute query
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function editArticle() {
+        $query = 'UPDATE Articles SET title=:title
+                            WHERE article_id = :id';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $this->article_id);
+        $stmt->bindParam(':title', $this->title);
+
+        if ($stmt->execute()) {
+            $query = 'SELECT text_id FROM Articles WHERE article_id = :id';
+
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+            // Binding data
+            $stmt->bindParam(':id', $this->article_id);
+            // Execute query
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->text_id = $row['text_id'];
+
+            $query = 'UPDATE Texts SET text=:text, text_short=:text_short
+                            WHERE text_id = :id';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $this->text_id);
+            $stmt->bindParam(':text_short', $this->text_short);
+            $stmt->bindParam(':text', $this->text);
+            if ($stmt->execute()) return true;
+            else return false;
+        }
+        else return false;
+    }
+
+    public function deleteArticle() {
+        $query = 'SELECT text_id FROM Articles WHERE article_id = :id';
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        // Binding data
+        $stmt->bindParam(':id', $this->article_id);
+        // Execute query
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->text_id = $row['text_id'];
+
+        $query = 'DELETE FROM Articles WHERE article_id = :id';
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        // Clean data
+        $this->article_id = htmlspecialchars(strip_tags($this->article_id));
+        // Bind data
+        $stmt->bindParam(':id', $this->article_id);
+        // Execute query
+
+        if($stmt->execute()) {
+            $query = 'DELETE FROM Texts WHERE text_id = :id';
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+            // Clean data
+            $this->text_id = htmlspecialchars(strip_tags($this->text_id));
+            // Bind data
+            $stmt->bindParam(':id', $this->text_id);
+            // Execute query
+            if($stmt->execute()) {
+                $query = 'DELETE FROM Photos WHERE article_id = :id';
+                // Prepare statement
+                $stmt = $this->conn->prepare($query);
+                // Clean data
+                $this->article_id = htmlspecialchars(strip_tags($this->article_id));
+                // Bind data
+                $stmt->bindParam(':id', $this->article_id);
+                // Execute query
+                $stmt->execute();
+                return true;
+            }
+            else return false;
+        }
+        else return false;
     }
 
 }
