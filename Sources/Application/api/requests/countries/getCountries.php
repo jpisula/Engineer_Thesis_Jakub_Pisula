@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 // Includes
 include_once __DIR__ . '/../../config/Database';
-include_once __DIR__ . '/../../models/Countries.php';
+include_once __DIR__ . '/../../models/Country.php';
 
 $database = new Database();
 $db = $database->connect();

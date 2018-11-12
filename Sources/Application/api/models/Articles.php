@@ -78,7 +78,6 @@ class Article {
 
         // Clean data
         $this->title = htmlspecialchars(strip_tags($this->title));
-        $this->create_date = htmlspecialchars(strip_tags($this->create_date));
         $this->author_id = htmlspecialchars(strip_tags($this->author_id));
         $this->text_id = htmlspecialchars(strip_tags($this->text_id));
 

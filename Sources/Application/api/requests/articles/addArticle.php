@@ -18,8 +18,6 @@
     $text = new Text($db);
     $photo = new Photo($db);
 
-    // Get raw posted data
-    $data = json_decode(file_get_contents("php://input"));
 
     $article->title = $_POST['title'];
     $article->author_id = $_POST['user_id'];
