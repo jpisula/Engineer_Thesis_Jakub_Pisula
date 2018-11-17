@@ -30,7 +30,7 @@ class Article {
 
     public function getRecentArticles() {
         $query = 'SELECT a.article_id, title, create_date, u.login,
-                                                  p.photo_path, t.text_short FROM Articles a
+                                                  p.photo_path, t.text FROM Articles a
                                               JOIN Users u on u.user_id = a.author_id
                                               LEFT JOIN Photos p on p.article_id = a.article_id
                                               JOIN Texts t on t.text_id = a.text_id

@@ -1,0 +1,31 @@
+.comments {
+    margin-top: 5%;
+}
+
+.comments p{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.comment {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.comment .comment-date {
+    float: right;
+}
+.comment .comment-text {
+    float: none;
+}
+
+hr.comments-separator {
+    margin: 0;
+    padding: 0;
+    overflow: visible; /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Article } from './Article';
+import { ArticleTile } from './ArticleTile';
 
 export class Articles extends React.Component{
     constructor(props){
@@ -21,27 +21,20 @@ export class Articles extends React.Component{
 
     render(){
         const { articles, isLoading } = this.state;
-        // console.log(articles);
-        // const arts = articles;
-        // console.log(arts);
-        // console.log(articles.data[0]);
         if (isLoading) {
             return <p>Loading ...</p>;
         } else {
             if(articles.data){
-                // articles.data.forEach(element => {
-                //     console.log(element);
-                // });
                 let articlesList = articles.data.map(function(article){
                     return (
                         <div className="col-sm-6 col-md-4 col-lg-4 col-xl-4" key={article.article_id}>
-                            <Article {...article} />
+                            <ArticleTile {...article} />
                         </div>
                     );
                   })
             
                 return (
-                    <div className="row">
+                    <div id="artykuly" className="row">
                         {articlesList}
                     </div>
                 );

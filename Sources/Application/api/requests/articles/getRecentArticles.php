@@ -28,7 +28,7 @@ if($rowCount > 0) {
             'login' => $row['login'],
             'photo_path' => $row['photo_path'],
             'article_id' => $row['article_id'],
-            'text_short' => $row['text_short'],
+            'text' => $row['text'],
         );
 
         array_push($jsonData['data'], $user_item);

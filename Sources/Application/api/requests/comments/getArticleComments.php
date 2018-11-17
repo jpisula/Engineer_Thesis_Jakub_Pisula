@@ -40,6 +40,7 @@
         echo json_encode($jsonData);
 
     } else {
-        echo json_encode(array('message' => 'No Comments Found!'));
+        echo json_encode(array('message' => 'No Comments Found!',
+                                'code' => 0));
     }
 ?>
