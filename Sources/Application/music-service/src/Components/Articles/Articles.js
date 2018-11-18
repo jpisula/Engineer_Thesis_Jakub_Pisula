@@ -1,5 +1,8 @@
 import React from 'react';
 import { ArticleTile } from './ArticleTile';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import './article.css';
 
 export class Articles extends React.Component{
     constructor(props){
@@ -13,12 +16,18 @@ export class Articles extends React.Component{
     }
 
     componentDidMount() {
-        this.setState({ isLoading: true });
     
-        fetch('http://localhost/api/requests/articles/getRecentArticles.php')
-          .then(response => response.json())
-          .then(articles => this.setState({ articles, isLoading: false }));
-      }
+        axios('http://localhost/api/requests/articles/getRecentArticles.php', {
+            method: "get",
+            withCredentials: true,
+            credentials: 'include',
+            origin: 'http://localhost',
+            crossdomain: true,  
+        }) .then((resp) => {
+            this.setState({articles: resp.data});
+        });
+    
+    }
 
     render(){
         const { session, articles, isLoading } = this.state;
@@ -28,15 +37,23 @@ export class Articles extends React.Component{
             if(articles.data){
                 let articlesList = articles.data.map(function(article){
                     return (
-                        <div className="col-sm-6 col-md-4 col-lg-4 col-xl-4" key={article.article_id}>
+                        <div className="col-sm-6 col-md-6 col-lg-6 col-xl-4" key={article.article_id}>
                             <ArticleTile {...article} {...session} />
                         </div>
                     );
                   })
             
                 return (
-                    <div id="artykuly" className="row">
+                    <div className="card article-list-card">
+                    <div className="card-header">
+                        Ostatnie artykuły
+                    </div>
+                    <div className="card-body">
+                    <div id="artykuly" className="row">                      
                         {articlesList}
+                    </div>
+                        <h5 className="link float-right"><Link className="link" to="/">Zobacz wszystkie artykuły</Link></h5>
+                        </div>
                     </div>
                 );
             } else {

@@ -17,8 +17,8 @@ export class Comment extends React.Component {
         return (
         <div>
             <div>
-                <span className="comment-author">{comment.login}</span>
-                <span className="comment-date">{comment.create_date}</span>
+                <span className="comment-author">Dodane przez: {comment.login}</span>
+                <span className="comment-date float-right">Data: {comment.create_date}</span>
             </div>
             <p className="comment-text">{comment.text}</p>
         </div>

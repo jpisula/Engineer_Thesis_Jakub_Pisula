@@ -29,3 +29,12 @@ hr.comments-separator {
     border-width: 1px 0 0 0;
     border-radius: 20px;
 }
+
+.comment-card {
+    margin-bottom: 2%;
+}
+
+.comment-text {
+    padding-top: 2%;
+    font-style: italic;
+}

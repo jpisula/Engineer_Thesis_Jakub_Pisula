@@ -21,13 +21,11 @@ export class ArticleTile extends React.Component{
            
             let article_path = "/article/"+article.article_id;
             return (
-                <div className="card">
+                <div className="card articleTile-card">
                     <div><img className="card-img-top" src="http://localhost/api/uploads/Articles/1.jpg" alt=""></img></div>
                     <div className="card-body">
                         <h5 className="card-title">{article.title}</h5>
                         <p className="card-text">{article_text}</p>
-                    </div>             
-                    <div className="card-body">
                         <Link className="card-link" to={article_path}>Czytaj dalej</Link>
                     </div>
                 </div>

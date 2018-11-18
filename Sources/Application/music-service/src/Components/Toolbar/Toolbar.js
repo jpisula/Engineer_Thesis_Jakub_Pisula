@@ -107,7 +107,7 @@ export class Toolbar extends React.Component {
         } else {
             return (
                 <div>
-                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                 <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                   <div className="container">     
                     <Link className="navbar-brand" to="/">MyMusic</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

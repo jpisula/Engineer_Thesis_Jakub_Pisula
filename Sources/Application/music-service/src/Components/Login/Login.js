@@ -82,7 +82,6 @@ export class Login extends React.Component {
             crossdomain: true,
         }).then((resp) => {
             window.location.reload()   
-            console.log(resp);  
         })
       }
 
