@@ -8,6 +8,7 @@ export class Articles extends React.Component{
         this.state = {
             articles: [ { data: [] } ],
             isLoading: false,
+            session: this.props.session
           };
     }
 
@@ -20,7 +21,7 @@ export class Articles extends React.Component{
       }
 
     render(){
-        const { articles, isLoading } = this.state;
+        const { session, articles, isLoading } = this.state;
         if (isLoading) {
             return <p>Loading ...</p>;
         } else {
@@ -28,7 +29,7 @@ export class Articles extends React.Component{
                 let articlesList = articles.data.map(function(article){
                     return (
                         <div className="col-sm-6 col-md-4 col-lg-4 col-xl-4" key={article.article_id}>
-                            <ArticleTile {...article} />
+                            <ArticleTile {...article} {...session} />
                         </div>
                     );
                   })

@@ -1,9 +1,10 @@
 <?php
     // Headers
-    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Origin: https://localhost:3000');
+    header('Access-Control-Allow-Credentials: true');
     header('Content-Type: application/json');
     header('Access-Control-Allow-Methods: POST');
-    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     // Includes
     include_once __DIR__ . '/../../config/Database';
@@ -27,18 +28,21 @@
 $result = $user->singIn();
     if($result == 0) {
         echo json_encode(
-            array('message' => 'Signed In')
+            array('message' => 'Signed In',
+                  'done' => 1)
         );
         session_start();
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['role'] = $user->role_name;
     } else if ($result == 1) {
         echo json_encode(
-            array('message' => 'Password Is Wrong')
+            array('message' => 'Password Is Wrong',
+                'done' => 0)
         );
     } else {
         echo json_encode(
-            array('message' => 'Login Is Wrong')
+            array('message' => 'Login Is Wrong',
+                'done' => 0)
         );
     }
 ?>

@@ -9,11 +9,12 @@ export class ArticleTile extends React.Component{
         // console.log(props);
         this.state = {
             article: props,
+            session: props.session
           };
     }
 
     render(){
-        const { article, isLoading } = this.state;
+        const { article, session } = this.state;
 
         if(article) {
             let article_text = article.text.substring(0,200) + '...';

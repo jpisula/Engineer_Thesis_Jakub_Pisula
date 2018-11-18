@@ -212,7 +212,6 @@ class User {
     public function signInByFacebook() {
         if(!$this->isFacebookUserInDB()) {
             if($this->createNewFbUser()) {
-                var_dump("Created user FB");
                 return $this->isFacebookUserInDB();
             } else return false;
         } return true;

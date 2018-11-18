@@ -1,9 +1,8 @@
 import React from 'react';
 import { Articles } from '../Articles/Articles';
-import './notlogged.css';
-import { NavigationNotLogged } from '../Navigation/NavigationNotLogged';
+import { Toolbar } from '../Toolbar/Toolbar';
 
-export class NotLogged extends React.Component {
+export class Body extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,10 +17,10 @@ export class NotLogged extends React.Component {
         const {session} = this.state;
         return (
             <div>
-                <NavigationNotLogged />
+                <Toolbar {...session} />
                 <div className="container">
                     <div className="content">
-                        <Articles />
+                        <Articles {...session}/>
                     </div>      
                 </div>
             </div>

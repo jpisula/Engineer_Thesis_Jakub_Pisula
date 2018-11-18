@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './article.css'
-import { NavigationNotLogged } from './../Navigation/NavigationNotLogged'
 import { CommentNotLogged } from './../Comments/commentsNotLogged';
+import axios from 'axios';
+import { Toolbar } from '../Toolbar/Toolbar';
 
 export default class Article extends React.Component{
 
@@ -21,13 +22,24 @@ export default class Article extends React.Component{
       componentDidMount() {
         this.setState({ isLoading: true });
     
-        fetch('http://localhost/api/config/getSession.php')
-          .then(response => response.json())
-          .then(session => this.setState({ session, isLoading: false }));
-
-          fetch('http://localhost/api/requests/articles/getArticleById?id='+this.props.match.params.id)
-          .then(response => response.json())
-          .then(article => this.setState({ article, isLoading: false }));
+        axios('http://localhost/api/config/getSession.php', {
+          method: "get",
+          withCredentials: true,
+          credentials: 'include',
+          origin: 'http://localhost',
+          crossdomain: true,  
+        }) .then((resp) => {
+            this.setState({session: resp.data, isLoading: false});
+        });
+        axios('http://localhost/api/requests/articles/getArticleById?id='+this.props.match.params.id, {
+          method: "get",
+          withCredentials: true,
+          credentials: 'include',
+          origin: 'http://localhost',
+          crossdomain: true,  
+      }) .then((resp) => {
+          this.setState({article: resp.data, isLoading: false});
+      });
       }
     
       render() {
@@ -41,7 +53,7 @@ export default class Article extends React.Component{
             return (
               //not logged
               <div>
-                <NavigationNotLogged />
+                <Toolbar {...session} />
                 <div className="container container-notlogged">
                   <div className="content">
                       <div className="row">
@@ -63,7 +75,10 @@ export default class Article extends React.Component{
           } else
           //session set (user logged)
           if(session.error_code === 0){
-            return ( <p>Logged</p>
+            return ( 
+            <div>
+              <Toolbar {...session} />
+            </div>
               //logged
             );
           }
