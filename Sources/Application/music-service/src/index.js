@@ -6,12 +6,14 @@ import * as serviceWorker from './serviceWorker';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import Article from './Components/Articles/Article';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Profile from './Components/Profile/Profile';
 
 const Routes = () => (
   <div>
      <Switch>
       <Route exact path='/' component={App}/>
       <Route path='/article/:id' component={Article}/>
+      <Route path='/profile' component={Profile}/>
   </Switch>
   </div>
 )

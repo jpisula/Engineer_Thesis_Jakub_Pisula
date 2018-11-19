@@ -54,8 +54,8 @@ export class ProfilePanel extends React.Component {
                     <label> Zarejestrowano:
                         <p>{reg_date}</p>
                     </label>
-                    <button type="button" className="btn btn-outline-secondary">Szczegóły profilu</button>
-                    <button type="button" className="btn btn-outline-secondary">Twoje wydarzenia</button>
+                    <button type="button" className="btn btn-outline-secondary">Profil</button>
+                    <button type="button" className="btn btn-outline-secondary">Wydarzenia</button>
                     
                 </div>
             </div>

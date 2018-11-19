@@ -26,31 +26,81 @@ export class Comments extends React.Component {
     
       }
 
+    addComment(e) {
+        e.preventDefault();
+        
+        const formData = {};
+        for (const field in this.refs) {
+          formData[field] = this.refs[field].value;
+        }
+
+        let data = {
+            article_id: this.props.article_id,
+            user_id: this.props.session.user_id,
+            text: formData.comment
+        };
+        
+        const jtfd = require("json-to-form-data");
+        axios('http://localhost/api/requests/comments/addArticleComment.php', {
+            method: "post",
+            data: jtfd(data),
+            withCredentials: true,
+            credentials: 'include',
+            origin: 'http://localhost',
+            crossdomain: true,  
+        }) .then((resp) => {
+            window.location.reload();
+        });
+    }
+
     render(){
         const { session, comments } = this.state;
+        let addComment = null;
+        if(session.error_code === 0) {
+            addComment = (
+                <div className="card addComment-card">
+                
+                    <form onSubmit={this.addComment.bind(this)}>
+                        <div className="card-header">
+                            Dodaj komentarz:
+                        </div>
+                        <div className="card-body">
+                        <textarea className="form-control" rows="5" ref="comment" />
+                        <input type="submit" className="btn btn-primary commentBtn" value="Dodaj komentarz" />
+                        </div>
+                    </form>  
+                </div>
+            );
+          }
+
         if(comments.data) {
             let commentsList = comments.data.map(function(comment){
                 return (               
                     <div className="card comment-card" key={comment.comment_id}>
                         <div className="card-body">
-                            <Comment {...comment} {...session} />
+                            <Comment comment={comment} session={session} />
                         </div>
                     </div>
                 );
               });
-              if(commentsList) {
+              if(commentsList) {                 
                 return (
+                    <div>
+                    {addComment}
                     <div className="card comments-card">
                         <div className="card-header">
                             Komentarze:
-                        </div>
-                        <div className="card-body">
+                        </div>                        
+                        <div className="card-body">                        
                         {commentsList}
                         </div>                        
+                    </div>
                     </div>
                 );
               } else {
                 return (
+                    <div>
+                    {(addComment)? addComment : null}
                     <div className="card comments-card">
                         <div className="card-header">
                             Komentarze:
@@ -59,11 +109,14 @@ export class Comments extends React.Component {
                             Niestety, nie znaleziono żadnych komentarzy.
                         </div>                        
                     </div>
+                    </div>
                 );
               }
            
         } else {
             return (
+                <div>
+                {(addComment)? addComment : null}
                 <div className="card comments-card">
                     <div className="card-header">
                         Komentarze:
@@ -71,6 +124,7 @@ export class Comments extends React.Component {
                     <div className="card-body">
                         Niestety, nie znaleziono żadnych komentarzy.
                     </div>                        
+                </div>
                 </div>
             );
         }

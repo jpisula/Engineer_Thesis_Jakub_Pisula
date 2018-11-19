@@ -37,7 +37,7 @@ export class Toolbar extends React.Component {
         withCredentials: true,
         credentials: 'include',
         origin: 'http://localhost',
-		crossdomain: true,
+		    crossdomain: true,
        
     }) .then(function() {
       let data= {

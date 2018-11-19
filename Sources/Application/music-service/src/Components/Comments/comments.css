@@ -38,3 +38,7 @@ hr.comments-separator {
     padding-top: 2%;
     font-style: italic;
 }
+
+.commentBtn {
+    margin-top: 2%;
+}

@@ -12,17 +12,17 @@
     <session id="-2028747658">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.7" value="4" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -30,26 +30,26 @@
           <entry key="Database" value="1" />
           <entry key="jpg" value="2" />
           <entry key="js" value="3" />
-          <entry key="php" value="157" />
+          <entry key="php" value="160" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="2" />
           <entry key="JavaScript" value="3" />
-          <entry key="PHP" value="156" />
+          <entry key="PHP" value="159" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="78" />
-          <entry key="php" value="12233" />
+          <entry key="php" value="12235" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="12190" />
+          <entry key="PHP" value="12192" />
           <entry key="PLAIN_TEXT" value="79" />
           <entry key="SQL" value="42" />
         </counts>
@@ -67,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/config/getSession.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="40">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="4" selection-end-column="41" />
+              <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -82,10 +82,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/requests/articles/getRecentArticles.php">
+        <entry file="file://$PROJECT_DIR$/requests/comments/deleteComment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+            <state relative-caret-position="320">
+              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -117,8 +117,6 @@
         <option value="$PROJECT_DIR$/requests/articles/editArticle.php" />
         <option value="$PROJECT_DIR$/requests/articles/deleteArticle.php" />
         <option value="$PROJECT_DIR$/models/Countries.php" />
-        <option value="$PROJECT_DIR$/requests/comments/addArticleComment.php" />
-        <option value="$PROJECT_DIR$/requests/comments/deleteComment.php" />
         <option value="$PROJECT_DIR$/requests/events/getAllEvents.php" />
         <option value="$PROJECT_DIR$/requests/events/getActiveEvents.php" />
         <option value="$PROJECT_DIR$/requests/eventParticipants/getEventParticipants.php" />
@@ -152,6 +150,8 @@
         <option value="$PROJECT_DIR$/requests/users/getUserById.php" />
         <option value="$PROJECT_DIR$/requests/comments/getArticleComments.php" />
         <option value="$PROJECT_DIR$/requests/articles/getRecentArticles.php" />
+        <option value="$PROJECT_DIR$/requests/comments/addArticleComment.php" />
+        <option value="$PROJECT_DIR$/requests/comments/deleteComment.php" />
       </list>
     </option>
   </component>
@@ -162,10 +162,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1763" />
-    <option name="y" value="-15" />
-    <option name="width" value="1552" />
-    <option name="height" value="848" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -173,7 +173,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,6 +246,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -301,18 +301,19 @@
       <workItem from="1542146039439" duration="682000" />
       <workItem from="1542203831555" duration="1228000" />
       <workItem from="1542239810415" duration="711000" />
-      <workItem from="1542476402186" duration="10871000" />
+      <workItem from="1542476402186" duration="11471000" />
+      <workItem from="1542632937024" duration="662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72087000" />
+    <option name="totallyTimeSpent" value="73349000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20628998" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20939597" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -459,13 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/comments/deleteComment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="28" column="5" lean-forward="true" selection-end-line="29" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requests/eventParticipants/deleteEventParticipant.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -593,13 +587,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/postAllows.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="133" selection-start-line="1" selection-start-column="4" selection-end-line="5" selection-end-column="149" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config/postAllows.php" />
     <entry file="file://$PROJECT_DIR$/requests/users/signInByFacebook.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -663,17 +651,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/comments/addArticleComment.php">
+    <entry file="file://$PROJECT_DIR$/config/getSession.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        <state relative-caret-position="40">
+          <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/comments/getArticleComments.php">
+    <entry file="file://$PROJECT_DIR$/requests/articles/getRecentArticles.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="4" selection-end-column="28" />
+        <state relative-caret-position="80">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requests/comments/addArticleComment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="6" column="105" selection-start-line="2" selection-start-column="3" selection-end-line="6" selection-end-column="105" />
         </state>
       </provider>
     </entry>
@@ -684,17 +679,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/getSession.php">
+    <entry file="file://$PROJECT_DIR$/requests/comments/getArticleComments.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="4" selection-end-column="41" />
+        <state relative-caret-position="37">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="4" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/articles/getRecentArticles.php">
+    <entry file="file://$PROJECT_DIR$/requests/comments/deleteComment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        <state relative-caret-position="320">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
         </state>
       </provider>
     </entry>

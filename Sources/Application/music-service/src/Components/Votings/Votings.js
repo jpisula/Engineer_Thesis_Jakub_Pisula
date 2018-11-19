@@ -14,7 +14,7 @@ export class Votings extends React.Component {
         const {session} = this.state;
         let link = null;
         if(session.error_code === 0) {
-            link = (<button type="button" className="btn btn-outline-secondary">Weź udział w głosowaniu!</button>);
+            link = (<button type="button" className="btn btn-outline-secondary">Głosuj!</button>);
         }
         return (
             <div className="card voting-card">
