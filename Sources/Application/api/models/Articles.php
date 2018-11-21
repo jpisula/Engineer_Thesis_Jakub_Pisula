@@ -44,6 +44,21 @@ class Article {
         return $stmt;
     }
 
+    public function getAllArticles() {
+        $query = 'SELECT a.article_id, title, create_date, u.login,
+                                                  p.photo_path, t.text FROM Articles a
+                                              JOIN Users u on u.user_id = a.author_id
+                                              LEFT JOIN Photos p on p.article_id = a.article_id
+                                              JOIN Texts t on t.text_id = a.text_id
+                                              ORDER BY create_date desc';
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        // Execute query
+        $stmt->execute();
+        return $stmt;
+    }
+
     public function getArticleById() {
         $query = 'SELECT title, create_date, u.login,  p.photo_path, t.text FROM Articles a
                                               JOIN Users u on u.user_id = a.author_id

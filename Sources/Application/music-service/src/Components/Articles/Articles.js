@@ -52,7 +52,7 @@ export class Articles extends React.Component{
                     <div id="artykuly" className="row">                      
                         {articlesList}
                     </div>
-                        <h5 className="link float-right"><Link className="link" to="/">Zobacz wszystkie artykuły</Link></h5>
+                        <h5 className="link float-right"><Link className="link" to="/articles" className="btn btn-outline-info">Zobacz wszystkie artykuły</Link></h5>
                         </div>
                     </div>
                 );

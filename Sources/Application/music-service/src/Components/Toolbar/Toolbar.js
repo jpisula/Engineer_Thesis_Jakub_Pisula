@@ -72,7 +72,7 @@ export class Toolbar extends React.Component {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                       <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                          <Link to="/#artykuly" className="nav-link">Artykuły <span className="sr-only">(current)</span></Link>
+                          <Link to="/articles" className="nav-link">Artykuły <span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/#glosowania" className="nav-link">Głosowania</Link>
@@ -116,7 +116,7 @@ export class Toolbar extends React.Component {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                       <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                          <Link to="/#artykuly" className="nav-link">Artykuły <span className="sr-only">(current)</span></Link>
+                          <Link to="/articles" className="nav-link">Artykuły <span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/#glosowania" className="nav-link">Głosowania</Link>

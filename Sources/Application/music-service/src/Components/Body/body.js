@@ -36,7 +36,7 @@ export class Body extends React.Component {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-lg-1 col-md-1"></div>
-                            <div className="user-profile col-lg-3 col-md-3 col-sm-12">
+                            <div className="user-profile col-lg-3 col-md-3 col-sm-12">                           
                                 <ProfilePanel {...session} />
                                 <Votings {...session}/>
                             </div>  

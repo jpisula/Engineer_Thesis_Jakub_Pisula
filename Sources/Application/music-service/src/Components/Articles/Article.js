@@ -3,7 +3,7 @@ import './article.css'
 import axios from 'axios';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { ProfilePanel } from '../Profile/ProfilePanel';
-import { Comment } from '../Comments/Comment';
+import { Votings } from '../Votings/Votings';
 import { Comments } from '../Comments/Comments';
 
 export default class Article extends React.Component{
@@ -93,6 +93,7 @@ export default class Article extends React.Component{
                                 <div className="col-lg-1 col-md-1"></div>
                                 <div className="user-profile col-lg-3 col-md-3 col-sm-12">
                                     <ProfilePanel {...session} />
+                                    <Votings {...session}/>
                                 </div>  
                                 <div className="content col-lg-7 col-md-7 col-sm-12">
                                     <div className="card article-card">

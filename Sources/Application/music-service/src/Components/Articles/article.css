@@ -13,3 +13,23 @@ img {
 .article-list-card {
     margin-bottom: 2%;
 }
+
+.link-btn {
+    margin-top: 2%;
+}
+
+.card-title {
+    margin-top: 1%;
+}
+
+.article-card {
+    margin-top: 1%;
+}
+
+.journalistDiv .btn {
+    margin-top:0;
+}
+
+.journalistDiv {
+    margin-bottom: 1%;
+}
