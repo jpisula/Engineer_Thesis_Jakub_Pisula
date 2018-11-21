@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, {history} from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -11,10 +11,10 @@ import Profile from './Components/Profile/Profile';
 const Routes = () => (
   <div>
      <Switch>
-      <Route exact path='/' component={App}/>
-      <Route path='/article/:id' component={Article}/>
-      <Route path='/profile' component={Profile}/>
-  </Switch>
+        <Route exact path='/' component={App}/>
+        <Route path='/article/:id' component={Article}/>
+        <Route path='/profile/:user_id' component={Profile}/>
+      </Switch>
   </div>
 )
 

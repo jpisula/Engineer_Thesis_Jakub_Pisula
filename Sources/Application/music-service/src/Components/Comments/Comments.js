@@ -31,13 +31,14 @@ export class Comments extends React.Component {
         
         const formData = {};
         for (const field in this.refs) {
+            console.log(field);
           formData[field] = this.refs[field].value;
         }
 
-        let data = {
+        const data = {
             article_id: this.props.article_id,
             user_id: this.props.session.user_id,
-            text: formData.comment
+            text: formData.comment,
         };
         
         const jtfd = require("json-to-form-data");

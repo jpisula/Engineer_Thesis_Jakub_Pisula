@@ -20,7 +20,7 @@ export class Body extends React.Component {
         if(session.error_code === 1) {
             return (
                 <div>
-                    <Toolbar {...session} />
+                    <Toolbar {...session}/>
                     <div className="container">
                         <div className="content">
                             <Articles {...session}/>
@@ -32,7 +32,7 @@ export class Body extends React.Component {
         } else {
             return (
                 <div>
-                    <Toolbar {...session} />
+                    <Toolbar {...session}/>
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-lg-1 col-md-1"></div>

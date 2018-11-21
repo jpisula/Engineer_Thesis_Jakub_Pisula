@@ -1,42 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import "./profilepanel.css";
-import { Link } from 'react-router-dom';
 
-export class ProfilePanel extends React.Component {
+export class ProfileData extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            session: props,
-            user: {}
+            user: props,
           };
     }
-
-    componentDidMount() {
-    
-        axios('http://localhost/api/requests/users/getUserById?id='+this.props.user_id, {
-            method: "get",
-            withCredentials: true,
-            credentials: 'include',
-            origin: 'http://localhost',
-                crossdomain: true,  
-        }) .then((resp) => {
-            this.setState({user: resp.data});
-        });
-    
-      }
-
-      goToProfile() {
-        console.log("abc");
-        let path = `/profile`;
-        this.props.history.push(path);
-      }
 
     render() {
         const { user } = this.state;
         let reg_date = new Date(user.registration_date);
         reg_date = reg_date.getDate() + '/' + reg_date.getMonth() + '/' + reg_date.getFullYear();
-        let profile_path = "/profile/" + user.user_id;
         return (
             <div className="card profilePanel-card">
                 <div className="card-header">
@@ -61,8 +39,6 @@ export class ProfilePanel extends React.Component {
                     <label> Zarejestrowano:
                         <p>{reg_date}</p>
                     </label>
-                    <Link to={profile_path} className="btn btn-outline-secondary">Profil</Link>
-                    <button type="button" className="btn btn-outline-secondary">Wydarzenia</button>
                     
                 </div>
             </div>

@@ -362,6 +362,16 @@ class User {
         else return false;
     }
 
+    public function isUserFb(){
+        $query = 'SELECT COUNT(user_id) FROM users WHERE user_id=:id AND user_fb_id IS NOT NULL AND Password IS NULL';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $this->user_id);
+        $stmt->execute();
+        $score = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($score['COUNT(user_id)'] == 0) return false;
+        else return true;
+    }
+
 
 }
 ?>

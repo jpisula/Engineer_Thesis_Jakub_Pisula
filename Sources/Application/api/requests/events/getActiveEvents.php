@@ -46,4 +46,3 @@
     } else {
         echo json_encode(array('message' => 'No Events Found!'));
     }
-?>

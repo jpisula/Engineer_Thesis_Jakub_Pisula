@@ -95,7 +95,7 @@ export class Toolbar extends React.Component {
                             Zaloguj
                           </a>
                           <ul className="dropdown-menu dropdown-lr dropdown-menu-right" role="menu">
-                            <Login />
+                            <Login prop={this.props} />
                           </ul>
                         </li>
                       </ul>

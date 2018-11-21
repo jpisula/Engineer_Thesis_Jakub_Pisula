@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './article.css'
 import axios from 'axios';
 import { Toolbar } from '../Toolbar/Toolbar';
@@ -60,7 +59,7 @@ export default class Article extends React.Component{
                 //not logged
                 <div>
                   <Toolbar {...session} />
-                  <div className="container container-notlogged">
+                  <div className="container">
                     <div className="content">
                         <div className="row">
                             <div className="col-sm-12">
