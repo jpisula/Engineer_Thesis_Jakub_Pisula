@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { ProfilePanel } from '../Profile/ProfilePanel';
 import { Votings } from '../Votings/Votings';
-import { Comments } from '../Comments/Comments';
+import { ArticleComments } from '../Comments/ArticleComments';
 
 export default class Article extends React.Component{
 
@@ -72,7 +72,7 @@ export default class Article extends React.Component{
                                 <p className="article">{article.text}</p>
                                 </div>
                                 </div>
-                                <Comments session={session} article_id={art_id} />
+                                <ArticleComments session={session} article_id={art_id} />
                                 </div>
                         </div>
                     </div>      
@@ -105,7 +105,7 @@ export default class Article extends React.Component{
                                     <p className="article">{article.text}</p>
                                     </div>
                                     </div>  
-                                    <Comments session={session} article_id={art_id} />       
+                                    <ArticleComments session={session} article_id={art_id} />       
                                                           
                                 </div>      
                             </div>

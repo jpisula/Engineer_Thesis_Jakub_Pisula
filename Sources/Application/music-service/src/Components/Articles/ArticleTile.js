@@ -31,9 +31,7 @@ export class ArticleTile extends React.Component{
                 </div>
             );
         } else {
-            return (
-            <p> hahaha</p>
-            );
+            return null;
         }
         
     }

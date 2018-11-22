@@ -8,6 +8,8 @@ import Article from './Components/Articles/Article';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Profile from './Components/Profile/Profile';
 import ArticlesList from './Components/Articles/ArticlesList';
+import { Events } from './Components/Events/Events';
+import { Event } from './Components/Events/Event';
 
 const Routes = () => (
   <div>
@@ -16,6 +18,8 @@ const Routes = () => (
         <Route path='/article/:id' component={Article}/>
         <Route path='/profile/:user_id' component={Profile}/>
         <Route path='/articles' component={ArticlesList}/>
+        <Route path='/events' component={Events}/>
+        <Route path='/event/:id' component={Event}/>
       </Switch>
   </div>
 )

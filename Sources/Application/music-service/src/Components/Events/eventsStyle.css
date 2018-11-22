@@ -1,0 +1,22 @@
+.events-card .card {
+    margin-bottom: 1%;
+}
+
+.events-card .btn {
+    margin-top: 2%;
+    width: 20%;
+}
+
+.event-card .index {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-right: 2%;
+    margin-top: 1.5%;
+}
+
+
+@media only screen and (max-width : 991px) {
+	.events-card .btn {
+        width: 50%;
+    }
+}

@@ -1,6 +1,7 @@
 <?php
     // Headers
-    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Origin: https://localhost:3000');
+    header('Access-Control-Allow-Credentials: true');
     header('Content-Type: application/json');
 
     // Includes
@@ -25,17 +26,9 @@
                 'event_id' => $row['event_id'],
                 'event_name' => $row['event_name'],
                 'start_time' => $row['start_time'],
-                'end_time' => $row['end_time'],
-                'create_date' => $row['create_date'],
-                'street' => $row['street'],
-                'house_num' => $row['house_num'],
-                'apart_num' => $row['apart_num'],
-                'city_name' => $row['city_name'],
                 'login' => $row['login'],
                 'text_short' => $row['text_short'],
-                'text' => $row['text'],
-                'photo_path' => $row['photo_path'],
-                'active' => $row['active']
+                'photo_path' => $row['photo_path']
             );
 
             array_push($jsonData['data'], $event_item);

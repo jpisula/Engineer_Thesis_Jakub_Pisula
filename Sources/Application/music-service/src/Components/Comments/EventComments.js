@@ -3,7 +3,7 @@ import './comments.css';
 import axios from 'axios';
 import { Comment } from './Comment';
 
-export class Comments extends React.Component {
+export class EventComments extends React.Component {
     constructor(props) {
         super(props);
     
@@ -14,7 +14,7 @@ export class Comments extends React.Component {
       }
 
       componentDidMount() {
-        axios('http://localhost/api/requests/comments/getArticleComments.php?id='+this.props.article_id, {
+        axios('http://localhost/api/requests/comments/getEventComments.php?id='+this.props.event_id, {
             method: "get",
             withCredentials: true,
             credentials: 'include',
@@ -31,18 +31,17 @@ export class Comments extends React.Component {
         
         const formData = {};
         for (const field in this.refs) {
-            console.log(field);
           formData[field] = this.refs[field].value;
         }
 
         const data = {
-            article_id: this.props.article_id,
+            event_id: this.props.event_id,
             user_id: this.props.session.user_id,
             text: formData.comment,
         };
         
         const jtfd = require("json-to-form-data");
-        axios('http://localhost/api/requests/comments/addArticleComment.php', {
+        axios('http://localhost/api/requests/comments/addEventComment.php', {
             method: "post",
             data: jtfd(data),
             withCredentials: true,

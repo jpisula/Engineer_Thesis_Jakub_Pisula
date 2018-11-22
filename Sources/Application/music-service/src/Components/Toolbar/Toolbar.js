@@ -75,10 +75,10 @@ export class Toolbar extends React.Component {
                           <Link to="/articles" className="nav-link">Artykuły <span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/#glosowania" className="nav-link">Głosowania</Link>
+                            <Link to="/" className="nav-link">Głosowania</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/#wydarzenia" className="nav-link">Wydarzenia</Link>
+                            <Link to="/events" className="nav-link">Wydarzenia</Link>
                         </li>
                       </ul>
                       <ul className="navbar-nav">
@@ -119,10 +119,10 @@ export class Toolbar extends React.Component {
                           <Link to="/articles" className="nav-link">Artykuły <span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/#glosowania" className="nav-link">Głosowania</Link>
+                            <Link to="/" className="nav-link">Głosowania</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/#wydarzenia" className="nav-link">Wydarzenia</Link>
+                            <Link to="/events" className="nav-link">Wydarzenia</Link>
                         </li>
                       </ul>
                       <ul className="navbar-nav">
