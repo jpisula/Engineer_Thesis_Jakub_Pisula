@@ -44,7 +44,6 @@ export class Events extends React.Component {
         const {session, events} = this.state;
         if(session && events) {
             let eventsList = events.data.map((event) => {
-
                 let date = new Date(event.start_time);
                 let month = (date.getMonth() + 1) <13 ? (date.getMonth() + 1) : 1;
                 date = date.getDate() + '/' + month + '/' + date.getFullYear();

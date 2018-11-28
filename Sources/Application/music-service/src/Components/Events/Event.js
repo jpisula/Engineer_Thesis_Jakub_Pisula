@@ -42,7 +42,6 @@ export class Event extends React.Component {
 
       render() {
           const {event, session} = this.state;
-          console.log(event);
           
           if(session !== null){
             //session not set (user not logged)
