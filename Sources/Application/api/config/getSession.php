@@ -1,8 +1,7 @@
 <?php
-// Headers
-header('Access-Control-Allow-Origin: https://localhost:3000');
-header('Access-Control-Allow-Credentials: true');
-header('Content-Type: application/json');
+    // Headers
+    require_once('header.php');
+    getHeader('GET');
 session_start();
 if(isset($_SESSION['user_id'])) {
 

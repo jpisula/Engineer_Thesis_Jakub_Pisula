@@ -1,35 +1,35 @@
 <?php
     // Headers
-    header('Access-Control-Allow-Origin: https://localhost:3000');
-    header('Access-Control-Allow-Credentials: true');
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: POST');
-    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+    require_once('./../../config/header.php');
+    getHeader('POST');
 
-    // Includes
-    include_once __DIR__ . '/../../config/Database';
-    include_once __DIR__ . '/../../models/Comments.php';
+    require_once('./../../config/authentication.php');
+    if(auth("")) {
 
-    $database = new Database();
-    $db = $database->connect();
+        // Includes
+        include_once __DIR__ . '/../../config/Database';
+        include_once __DIR__ . '/../../models/Comments.php';
 
-    $comment = new Comment($db);
+        $database = new Database();
+        $db = $database->connect();
 
-    // Get raw posted data
-    $data = json_decode(file_get_contents("php://input"));
+        $comment = new Comment($db);
 
-    $comment->article_id = $_POST['article_id'];
-    $comment->user_id = $_POST['user_id'];
-    $comment->text = $_POST['text'];
+        // Get raw posted data
+        $data = json_decode(file_get_contents("php://input"));
+
+        $comment->article_id = $_POST['article_id'];
+        $comment->user_id = $_POST['user_id'];
+        $comment->text = $_POST['text'];
 
 
-    if($comment->addArticleComment()){
-        echo json_encode(
-            array('message' => 'Comment Added!')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Comment Not Added!')
-        );
+        if($comment->addArticleComment()){
+            echo json_encode(
+                array('message' => 'Comment Added!')
+            );
+        } else {
+            echo json_encode(
+                array('message' => 'Comment Not Added!')
+            );
+        }
     }
-?>

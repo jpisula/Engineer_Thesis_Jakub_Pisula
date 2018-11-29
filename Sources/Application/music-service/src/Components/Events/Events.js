@@ -92,6 +92,7 @@ export class Events extends React.Component {
                                     <div className="user-profile col-lg-3 col-md-3 col-sm-12">
                                         <ProfilePanel {...session} />
                                         <Votings {...session}/>
+                                        {/* <UserEvents {...session} /> */}
                                     </div>  
                                     <div className="content col-lg-7 col-md-7 col-sm-12">
                                         <div className="card events-card">

@@ -1,7 +1,7 @@
 <?php
     // Headers
-    header('Access-Control-Allow-Origin: *');
-    header('Content-Type: application/json');
+    require_once('./../../config/header.php');
+    getHeader('GET');
 
     // Includes
     include_once __DIR__ . '/../../config/Database';

@@ -1,38 +1,38 @@
 <?php
     // Headers
-    header('Access-Control-Allow-Origin: https://localhost:3000');
-    header('Access-Control-Allow-Credentials: true');
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: POST');
-    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+    require_once('./../../config/header.php');
+    getHeader('PUT');
 
-    // Includes
-    include_once __DIR__ . '/../../config/Database';
-    include_once __DIR__ . '/../../models/Users.php';
+    require_once('./../../config/authentication.php');
+    if(auth('')) {
 
-    $database = new Database();
-    $db = $database->connect();
+        // Includes
+        include_once __DIR__ . '/../../config/Database';
+        include_once __DIR__ . '/../../models/Users.php';
 
-    $user = new User($db);
+        $database = new Database();
+        $db = $database->connect();
 
-    // Get raw posted data
-    $data = json_decode(file_get_contents("php://input"));
+        $user = new User($db);
 
-    // Set ID to update
-    $user->user_id = $data->user_id;
+        // Get raw posted data
+        $data = json_decode(file_get_contents("php://input"));
 
-    //data to update
-    $user->password = $data->password;
-    $user->valPassword = $data->valPassword;
+        // Set ID to update
+        $user->user_id = $data->user_id;
 
-    // Update post
-    if($user->changePassword()) {
-        echo json_encode(
-            array('message' => 'Password Changed')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Password Not Changed')
-        );
+        //data to update
+        $user->password = $data->password;
+        $user->valPassword = $data->valPassword;
+
+        // Update post
+        if($user->changePassword()) {
+            echo json_encode(
+                array('message' => 'Password Changed')
+            );
+        } else {
+            echo json_encode(
+                array('message' => 'Password Not Changed')
+            );
+        }
     }
-?>

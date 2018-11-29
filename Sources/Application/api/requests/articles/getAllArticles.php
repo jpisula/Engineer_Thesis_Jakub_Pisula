@@ -1,8 +1,7 @@
 <?php
-    // Headers
-    header('Access-Control-Allow-Origin: https://localhost:3000');
-    header('Access-Control-Allow-Credentials: true');
-    header('Content-Type: application/json');
+        // Headers
+        require_once('./../../config/header.php');
+        getHeader('GET');
 
     // Includes
     include_once __DIR__ . '/../../config/Database';
