@@ -29,6 +29,7 @@
         'user_id' => $event->user_id,
         'text' => $event->text,
         'photo_path' => $event->photo_path,
+        'usersNum' => $event->usersNum
     );
 
     print_r(json_encode($arr));

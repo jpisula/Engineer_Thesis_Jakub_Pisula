@@ -5,6 +5,8 @@ import { Toolbar } from '../Toolbar/Toolbar';
 import { Link } from 'react-router-dom';
 import { ProfilePanel } from '../Profile/ProfilePanel';
 import { Votings } from '../Votings/Votings';
+import { UserEvents } from './UserEvents';
+import { UserEventsParticip } from './UserEventsParticip';
 
 export class Events extends React.Component {
     constructor(props) {
@@ -91,8 +93,9 @@ export class Events extends React.Component {
                                     <div className="col-lg-1 col-md-1"></div>
                                     <div className="user-profile col-lg-3 col-md-3 col-sm-12">
                                         <ProfilePanel {...session} />
-                                        <Votings {...session}/>
-                                        {/* <UserEvents {...session} /> */}
+                                        <UserEventsParticip {...session} />
+                                        <UserEvents {...session} />
+                                        <Votings {...session} />
                                     </div>  
                                     <div className="content col-lg-7 col-md-7 col-sm-12">
                                         <div className="card events-card">

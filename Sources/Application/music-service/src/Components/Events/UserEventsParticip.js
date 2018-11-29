@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-export class UserEvents extends React.Component {
+export class UserEventsParticip extends React.Component {
     constructor(props) {
         super(props);
 
@@ -13,7 +13,7 @@ export class UserEvents extends React.Component {
     }
 
     componentDidMount() {
-        axios('http://localhost/api/requests/events/getUserEvents.php?id='+this.props.user_id, {
+        axios('http://localhost/api/requests/events/getUserEventsParticip.php?id='+this.props.user_id, {
             method: "get",
             withCredentials: true,
             credentials: 'include',
@@ -30,14 +30,11 @@ export class UserEvents extends React.Component {
         if(events!=null) {
             let eventList = events.data.map((event) => {
                 let event_path = '/event/' + event.event_id;
-                let edit_path = '/event-edit/' + event.event_id;
                 return (
                     <div className="card" key={event.event_id}>
                         <div className="card-body">
                         <Link to={event_path}> <h5>{event.event_name}</h5> </Link>
-                        <p>Start: <span className="float-right">{event.start_time}</span></p>
-                        <p>Utworzono: <span className="float-right">{event.create_date}</span></p>
-                        <Link to={edit_path} className="fas fa-edit"></Link>
+                        <p>Start: <span className="float-right">{event.start_time}</span></p>                      
                         </div>
                     </div>
                     
@@ -47,12 +44,10 @@ export class UserEvents extends React.Component {
             return (
                 <div className="card">
                     <div className="card-header">
-                        Dodane przez Ciebie wydarzenia:
+                        Twoje wydarzenia:
                     </div>
                     <div className="card-body">
                         {eventList}
-                        <p>Chcesz utworzyć kolejne wydarzenia?</p>
-                        <Link to='/event-creation' className="btn btn-success">Dodaj</Link>
                     </div>
                 </div>
             );
@@ -63,8 +58,7 @@ export class UserEvents extends React.Component {
                     Twoje wydarzenia:
                 </div>
                 <div className="card-body">
-                    <p>Nie dodałeś jeszcze swojego wydarzenia!</p>
-                    <Link to='/event-creation' className="btn btn-success">Dodaj</Link>
+                    <p>Nie jesteś zapisany do żadnego wydarzenia!</p>
                 </div>
             </div>
         );

@@ -25,6 +25,7 @@ class Event {
     public $text_short;
     public $text;
     public $photo_path;
+    public $usersNum;
 
 
     /**
@@ -52,11 +53,12 @@ class Event {
 
     function getEventById() {
         $query = 'SELECT e.event_id, event_name, start_time, end_time, create_date, a.street, a.house_num, a.apart_num, c.city_name,
-        u.login, u.user_id, t.text, p.photo_path, e.active FROM Events e
+        u.login, u.user_id, t.text, p.photo_path, e.active, COUNT(ep.user_id) as usersNum FROM Events e
         JOIN Addresses a on a.address_id = e.address_id
         JOIN Cities c on c.city_id = a.city_id
         JOIN Users u on u.user_id = e.user_id
         JOIN Texts t on t.text_id = e.text_id
+        JOIN event_participants ep on ep.event_id = e.event_id
         LEFT JOIN Photos p on p.event_id = e.event_id
         WHERE e.event_id = ?';
 
@@ -79,6 +81,7 @@ class Event {
         $this->user_id = $row['user_id'];
         $this->text = $row['text'];
         $this->photo_path = $row['photo_path'];
+        $this->usersNum = $row['usersNum'];
     }
 
     function getUserEvents() {
@@ -95,13 +98,21 @@ class Event {
         $stmt->bindParam(1, $this->user_id);
         // Execute query
         $stmt->execute();
+        return $stmt;
+    }
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    function getUserEventsParticip() {
+        $query = 'SELECT e.event_id, e.event_name, start_time FROM Events e      
+        JOIN Users u on u.user_id = e.user_id
+        JOIN event_participants ep on ep.event_id = e.event_id
+        WHERE ep.user_id = ?';
 
-        $this->event_id = $row['event_id'];
-        $this->event_name = $row['event_name'];
-        $this->start_time = $row['start_time'];
-        $this->create_date = $row['create_date'];
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->user_id);
+        // Execute query
+        $stmt->execute();
+        return $stmt;
     }
 
     function getEventsByCity() {

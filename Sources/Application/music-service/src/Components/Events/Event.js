@@ -13,7 +13,8 @@ export class Event extends React.Component {
 
         this.state = {
           event: [ { data: [] } ],
-          session: null
+          session: null,
+          eventPart: null
         };
       }
     
@@ -38,10 +39,59 @@ export class Event extends React.Component {
           this.setState({event: resp.data});
       });
 
+      axios('http://localhost/api/requests/eventParticipants/getEventParticipants.php?event_id='+this.props.match.params.id, {
+          method: "get",
+          withCredentials: true,
+          credentials: 'include',
+          origin: 'http://localhost',
+          crossdomain: true,  
+        }) .then((resp) => {
+            this.setState({eventPart: resp.data});
+        });
+
       }
 
+      joinEvent(user_id, event_id) {
+        let data = {
+          user_id: user_id,
+          event_id: event_id
+        }
+        const jtfd = require("json-to-form-data");
+        axios('http://localhost/api/requests/eventParticipants/addEventParticipant.php', {
+          method: "post",
+          data: jtfd(data),
+          withCredentials: true,
+          credentials: 'include',
+          origin: 'http://localhost',
+          crossdomain: true,
+         
+        }) .then(function() {        
+            window.location.reload();
+        });
+  
+    }
+
+    leaveEvent(user_id, event_id) {
+      let data = {
+        user_id: user_id,
+        event_id: event_id
+      }
+      const jtfd = require("json-to-form-data");
+      axios('http://localhost/api/requests/eventParticipants/deleteEventParticipant.php', {
+        method: "post",
+        data: jtfd(data),
+        withCredentials: true,
+        credentials: 'include',
+        origin: 'http://localhost',
+        crossdomain: true,       
+      }) .then(function() {        
+          window.location.reload();
+      });
+
+  }
+
       render() {
-          const {event, session} = this.state;
+          const {event, eventPart, session} = this.state;
           
           if(session !== null){
             //session not set (user not logged)
@@ -65,7 +115,8 @@ export class Event extends React.Component {
                                     <p className="event-text">{event.text}</p>
                                     <p><span className="index">START:</span> {event.start_time}</p>
                                     <p><span className="index">KONIEC:</span> {event.end_time}</p>
-                                    <p><span className="index">MIASTO:</span> {event.city_name}</p>                           
+                                    <p><span className="index">MIASTO:</span> {event.city_name}</p>
+                                    <p><span className="index">ZAPISANYCH:</span> {event.usersNum}</p>                            
                                   </div>
                                   </div>
                                     <EventComments session={session} event_id={event.event_id} />
@@ -79,7 +130,51 @@ export class Event extends React.Component {
             } else if(session.error_code === 0){
               let event_id = event.event_id;
               let address = event.street + " " + event.house_num + ((event.apart_num!=null) ? "/"+event.apart_num : " ");
-              if(event_id) {
+              if(event_id && eventPart!= null) {       
+                
+                let ep = false;
+                eventPart.data.forEach(element => {
+                  if(element.user_id === session.user_id) {
+                    ep = true;
+                    return;
+                  }
+                });               
+                let epList = null;
+                let eventPartHTML = null;
+                if(ep) {
+                  epList = eventPart.data.map((element) => {
+                    return (
+                      <li key={element.event_id+element.user_id}>{element.user_name}</li>
+                    );
+                  });
+                   eventPartHTML = (
+                    <div>
+                      <ul>
+                        {epList}
+                      </ul>
+                      <button className="btn btn-danger JoinBtn" onClick={this.leaveEvent.bind(this, session.user_id, event_id)}>Wypisz się</button>
+                    </div>
+                  )
+                } else {
+                  epList = (
+                  <div>
+                    <p>Musisz być członkiem wydarzenia, aby zobaczyć listę członków!</p>
+                    <button className="btn btn-info JoinBtn" onClick={this.joinEvent.bind(this, session.user_id, event_id)}>Dołącz!</button>
+                  </div>
+                )
+                    eventPartHTML = epList;
+                }
+
+                if(event.user_id === session.user_id) {
+                  eventPartHTML = (
+                    <div>
+                      <ul>
+                        {epList}
+                      </ul>
+                    </div>
+                  )
+                }
+            
                 return ( 
                   <div>
                     <Toolbar {...session} />
@@ -101,7 +196,10 @@ export class Event extends React.Component {
                                         <p><span className="index">START:</span> {event.start_time}</p>
                                         <p><span className="index">KONIEC:</span> {event.end_time}</p>
                                         <p><span className="index">MIASTO:</span> {event.city_name}</p> 
-                                        <p><span className="index">ADRES:</span> {address}</p>                          
+                                        <p><span className="index">ADRES:</span> {address}</p>
+                                        <p><span className="index">ZAPISANYCH:</span> {event.usersNum}</p>
+                                        <p><span className="index">LISTA CZŁONKÓW:</span></p>
+                                        {eventPartHTML}           
                                     </div>
                                     </div>
                                         <EventComments session={session} event_id={event.event_id} />
