@@ -73,7 +73,7 @@ export class Events extends React.Component {
                                     <div className="col-sm-12">
                                         <div className="card events-card">
                                             <div className="card-header">
-                                                Wszystkie wydarzenia:
+                                                Wszystkie wydarzenia
                                             </div>
                                             <div className="card-body">
                                                 {eventsList}
@@ -100,7 +100,7 @@ export class Events extends React.Component {
                                     <div className="content col-lg-7 col-md-7 col-sm-12">
                                         <div className="card events-card">
                                             <div className="card-header">
-                                                Wszystkie wydarzenia:
+                                                Wszystkie wydarzenia
                                             </div>
                                             <div className="card-body">
                                                 {eventsList}

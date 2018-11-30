@@ -3,7 +3,7 @@
     require_once('./../../config/header.php');
     getHeader('DELETE');
     require_once('./../../config/authentication.php');
-    if(auth('Journalist') || auth('Admin')) {
+    if(auth('Journalist&Admin')) {
         // Includes
         include_once __DIR__ . '/../../config/Database';
         include_once __DIR__ . '/../../models/Articles.php';
@@ -15,11 +15,9 @@
         $article = new Article($db);
         $photo = new Photo($db);
 
-        // Get raw posted data
-        $data = json_decode(file_get_contents("php://input"));
 
         // Set ID to delete
-        $article->article_id = $data->article_id;
+        $article->article_id = $_POST['article_id'];
         $photo->article_id = $article->article_id;
 
 

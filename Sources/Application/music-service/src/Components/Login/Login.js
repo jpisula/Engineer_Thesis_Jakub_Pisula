@@ -40,7 +40,21 @@ export class Login extends React.Component {
          
         }) .then(function(resp) {
           if(resp.data.done === 1){
-            window.location.reload();
+            let data= {
+              user_id : resp.data.user_id,
+              state: "true"
+            }
+            axios('http://localhost/api/requests/users/setLoggedIn.php', {
+              method: "post",
+              data: JSON.stringify(data),
+              withCredentials: true,
+              credentials: 'include',
+              origin: 'http://localhost',
+              crossdomain: true,
+              
+            }) .then(function() {
+                window.location.reload();
+            });
           }
           else {
             document.getElementById("loginInfo").innerHTML = '<p className="loginInfo">Podano niepoprawny login i/lub hasło</p>'

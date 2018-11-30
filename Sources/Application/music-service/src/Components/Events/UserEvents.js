@@ -47,7 +47,7 @@ export class UserEvents extends React.Component {
             return (
                 <div className="card">
                     <div className="card-header">
-                        Dodane przez Ciebie wydarzenia:
+                        Dodane przez Ciebie wydarzenia
                     </div>
                     <div className="card-body">
                         {eventList}

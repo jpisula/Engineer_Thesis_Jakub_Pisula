@@ -4,7 +4,7 @@
     getHeader('PUT');
 
     require_once('./../../config/authentication.php');
-    if(auth('Journalist') || auth('Admin')) {
+    if(auth('')) {
         // Includes
         include_once __DIR__ . '/../../config/Database';
         include_once __DIR__ . '/../../models/Events.php';

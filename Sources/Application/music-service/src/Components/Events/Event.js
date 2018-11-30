@@ -98,6 +98,7 @@ export class Event extends React.Component {
             if(session.error_code === 1) {
               let event_id = event.event_id;
               if(event_id){
+
                 return (
                   //not logged
                   <div>
@@ -112,7 +113,11 @@ export class Event extends React.Component {
                                     <img className="img-fluid rounded image" src="http://localhost/api/uploads/Articles/1.jpg"></img>
                                     <p className="lead"><span className="index">Stworzone przez:</span> {event.login}</p>
                                     <p><span className="index">Opis wydarzenia:</span></p>                                   
-                                    <p className="event-text">{event.text}</p>
+                                    <p className="event-text">
+                                        {event.text.split('\n').map((item, key) => {
+                                          return <span key={key}>{item}<br/></span>
+                                        })}
+                                    </p>
                                     <p><span className="index">START:</span> {event.start_time}</p>
                                     <p><span className="index">KONIEC:</span> {event.end_time}</p>
                                     <p><span className="index">MIASTO:</span> {event.city_name}</p>
@@ -130,7 +135,7 @@ export class Event extends React.Component {
             } else if(session.error_code === 0){
               let event_id = event.event_id;
               let address = event.street + " " + event.house_num + ((event.apart_num!=null) ? "/"+event.apart_num : " ");
-              if(event_id && eventPart!= null) {       
+              if(event_id && eventPart!= null) {      
                 
                 let ep = false;
                 eventPart.data.forEach(element => {
@@ -192,7 +197,11 @@ export class Event extends React.Component {
                                         <img className="img-fluid rounded image" src="http://localhost/api/uploads/Articles/1.jpg"></img>
                                         <p className="lead"><span className="index">Stworzone przez:</span> {event.login}</p>
                                         <p><span className="index">Opis wydarzenia:</span></p>                                   
-                                        <p className="event-text">{event.text}</p>
+                                        <p className="event-text">
+                                        {event.text.split('\n').map((item, key) => {
+                                          return <span key={key}>{item}<br/></span>
+                                        })}
+                                        </p>
                                         <p><span className="index">START:</span> {event.start_time}</p>
                                         <p><span className="index">KONIEC:</span> {event.end_time}</p>
                                         <p><span className="index">MIASTO:</span> {event.city_name}</p> 

@@ -10,6 +10,10 @@ import Profile from './Components/Profile/Profile';
 import ArticlesList from './Components/Articles/ArticlesList';
 import { Events } from './Components/Events/Events';
 import { Event } from './Components/Events/Event';
+import { EventCreation } from './Components/Events/EventCreation';
+import { EditEvent } from './Components/Events/EditEvent';
+import { ArticleCreation } from './Components/Articles/ArticleCreation';
+import { EditArticle } from './Components/Articles/EditArticle';
 
 const Routes = () => (
   <div>
@@ -20,6 +24,10 @@ const Routes = () => (
         <Route path='/articles' component={ArticlesList}/>
         <Route path='/events' component={Events}/>
         <Route path='/event/:id' component={Event}/>
+        <Route path='/event-creation' component={EventCreation}/>
+        <Route path='/event-edit/:id' component={EditEvent}/>
+        <Route path='/article-creation' component={ArticleCreation}/>
+        <Route path='/article-edit/:id' component={EditArticle}/>
       </Switch>
   </div>
 )

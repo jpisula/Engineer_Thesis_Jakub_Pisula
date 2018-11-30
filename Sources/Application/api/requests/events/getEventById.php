@@ -1,4 +1,5 @@
 <?php
+
     // Headers
     require_once('./../../config/header.php');
     getHeader('GET');

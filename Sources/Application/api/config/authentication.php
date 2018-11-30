@@ -30,6 +30,11 @@ function checkAuth($permission) {
                 else return false;
                 break;
             }
+            case 'Journalist&Admin': {
+                if($_SESSION['role'] == 'Journalist' || $_SESSION['role'] == 'Admin') return true;
+                else return false;
+                break;
+            }
             default: 
                 return true;
         }

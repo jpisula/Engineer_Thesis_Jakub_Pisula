@@ -3,7 +3,7 @@
     require_once('./../../config/header.php');
     getHeader('POST');
     require_once('./../../config/authentication.php');
-    if(auth('Journalist') || auth('Admin')) {
+    if(auth('Journalist&Admin')) {
         
         // Includes
         include_once __DIR__ . '/../../config/Database';
@@ -22,7 +22,7 @@
         $article->title = $_POST['title'];
         $article->author_id = $_POST['user_id'];
         $text->text = $_POST['text'];
-        $text->text_short = $_POST['text_short'];
+        $text->text_short = "";
         if($text->addNewText()) {
             $article->text_id = $text->text_id;
             if($article->addArticle()){

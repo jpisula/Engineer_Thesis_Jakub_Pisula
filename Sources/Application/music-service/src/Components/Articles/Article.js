@@ -5,6 +5,7 @@ import { Toolbar } from '../Toolbar/Toolbar';
 import { ProfilePanel } from '../Profile/ProfilePanel';
 import { Votings } from '../Votings/Votings';
 import { ArticleComments } from '../Comments/ArticleComments';
+import { JournalistPanel } from './JournalistPanel';
 
 export default class Article extends React.Component{
 
@@ -69,7 +70,11 @@ export default class Article extends React.Component{
                                 <p className="lead">Autor artykułu: {article.author_login}</p>
                                 <p>Dodano: {article.create_date}</p>
                                 <img className="img-fluid rounded image" src="http://localhost/api/uploads/Articles/1.jpg"></img>
-                                <p className="article">{article.text}</p>
+                                <p className="article">
+                                {article.text.split('\n').map((item, key) => {
+                                  return <span key={key}>{item}<br/></span>
+                                })}
+                                </p>
                                 </div>
                                 </div>
                                 <ArticleComments session={session} article_id={art_id} />
@@ -85,6 +90,9 @@ export default class Article extends React.Component{
           if(session.error_code === 0){
             let art_id = article.article_id;
             if(art_id) {
+              let jour = null;
+              if(session.role==="Admin" || session.role ==="Journalist")
+                jour = <JournalistPanel {...session} />;
               return ( 
                 <div>
                   <Toolbar {...session} />
@@ -93,6 +101,7 @@ export default class Article extends React.Component{
                                 <div className="col-lg-1 col-md-1"></div>
                                 <div className="user-profile col-lg-3 col-md-3 col-sm-12">
                                     <ProfilePanel {...session} />
+                                    {jour}                                   
                                     <Votings {...session}/>
                                 </div>  
                                 <div className="content col-lg-7 col-md-7 col-sm-12">
@@ -102,7 +111,11 @@ export default class Article extends React.Component{
                                     <p className="lead">Autor artykułu: {article.author_login}</p>
                                     <p>Dodano: {article.create_date}</p>
                                     <img className="img-fluid rounded image" src="http://localhost/api/uploads/Articles/1.jpg"></img>
-                                    <p className="article">{article.text}</p>
+                                    <p className="article">
+                                    {article.text.split('\n').map((item, key) => {
+                                      return <span key={key}>{item}<br/></span>
+                                    })}
+                                    </p>
                                     </div>
                                     </div>  
                                     <ArticleComments session={session} article_id={art_id} />       

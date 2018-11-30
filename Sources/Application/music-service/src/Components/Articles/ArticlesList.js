@@ -3,9 +3,9 @@ import axios from 'axios';
 import './article.css';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { ProfilePanel } from '../Profile/ProfilePanel';
-import { Link } from 'react-router-dom';
 import ArticlesListList from './ArticlesListList';
 import { Votings } from '../Votings/Votings';
+import { JournalistPanel } from './JournalistPanel';
 
 
 export default class ArticlesList extends React.Component{
@@ -60,13 +60,9 @@ export default class ArticlesList extends React.Component{
             );
         } else {
             let journalist = null;
-            if(session.role === "Journalist") {
+            if(session.role === "Journalist" || session.role === "Admin") {
                 journalist = (
-                    <div className="card journalistDiv">
-                    <div className="card-body">
-                        <Link to="/journalistPanel" className="btn btn-outline-info">Zarządzaj swoimi artykułami</Link>
-                    </div>
-                    </div>
+                    <JournalistPanel {...session} />
                 );
             }
             return (
@@ -77,10 +73,10 @@ export default class ArticlesList extends React.Component{
                             <div className="col-lg-1 col-md-1"></div>
                             <div className="user-profile col-lg-3 col-md-3 col-sm-12">
                                 <ProfilePanel {...session} />
+                                {journalist}
                                 <Votings {...session}/>
                             </div>  
                             <div className="content col-lg-7 col-md-7 col-sm-12">
-                                {journalist}
                                 <ArticlesListList {...articles}/>                                
                             </div>      
                         </div>

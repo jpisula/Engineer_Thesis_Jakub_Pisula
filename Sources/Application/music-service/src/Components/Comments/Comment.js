@@ -45,7 +45,11 @@ export class Comment extends React.Component {
                 <span className="comment-author">Dodane przez: {comment.login}</span>
                 <span className="comment-date float-right">Data: {comment.create_date}</span>
             </div>
-            <p className="comment-text">{comment.text}</p>
+            <p className="comment-text">
+            {comment.text.split('\n').map((item, key) => {
+                return <span key={key}>{item}<br/></span>
+            })}
+            </p>
             {delBtn}
         </div>
         );

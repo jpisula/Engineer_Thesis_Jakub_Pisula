@@ -62,7 +62,7 @@ export class ProfilePanel extends React.Component {
                         <p>{reg_date}</p>
                     </label>
                     <Link to={profile_path} className="btn btn-outline-secondary">Profil</Link>
-                    <button type="button" className="btn btn-outline-secondary">Wydarzenia</button>
+                    <Link to="/events" className="btn btn-outline-secondary">Wydarzenia</Link>
                     
                 </div>
             </div>

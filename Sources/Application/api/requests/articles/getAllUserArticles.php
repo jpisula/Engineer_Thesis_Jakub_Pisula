@@ -3,7 +3,7 @@
     require_once('./../../config/header.php');
     getHeader('GET');
     require_once('./../../config/authentication.php');
-    if(auth('Journalist') || auth('Admin')) {
+    if(auth('Journalist&Admin')) {
 
         // Includes
         include_once __DIR__ . '/../../config/Database';
@@ -40,7 +40,8 @@
             echo json_encode($jsonData);
 
         } else {
-            echo json_encode(array('message' => 'No Articles Found!'));
+            echo json_encode(array('message' => 'No Articles Found!',
+                                    'error' => 1));
         }
 
     }

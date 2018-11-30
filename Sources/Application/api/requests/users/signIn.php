@@ -26,7 +26,8 @@ $result = $user->singIn();
     if($result == 0) {
         echo json_encode(
             array('message' => 'Signed In',
-                  'done' => 1)
+                  'done' => 1,
+                  'user_id' =>$user->user_id)
         );
         session_start();
         $_SESSION['user_id'] = $user->user_id;

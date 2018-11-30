@@ -1,10 +1,10 @@
 <?php
     // Headers
     require_once('./../../config/header.php');
-    getHeader('PUT');
+    getHeader('POST');
 
     require_once('./../../config/authentication.php');
-    if(auth('Journalist') || auth('Admin')) {
+    if(auth('Journalist&Admin')) {
         // Includes
         include_once __DIR__ . '/../../config/Database';
         include_once __DIR__ . '/../../models/Articles.php';
@@ -14,15 +14,13 @@
 
         $article = new Article($db);
 
-        // Get raw posted data
-        $data = json_decode(file_get_contents("php://input"));
         // Set ID to update
-        $article->article_id = $data->article_id;
+        $article->article_id = $_POST['article_id'];
 
         //data to update
-        $article->title = $data->title;
-        $article->text = $data->text;
-        $article->text_short = $data->text_short;
+        $article->title = $_POST['title'];
+        $article->text = $_POST['text'];
+        $article->text_short = "";
 
         // Update post
         if($article->editArticle()) {
