@@ -14,6 +14,9 @@ import { EventCreation } from './Components/Events/EventCreation';
 import { EditEvent } from './Components/Events/EditEvent';
 import { ArticleCreation } from './Components/Articles/ArticleCreation';
 import { EditArticle } from './Components/Articles/EditArticle';
+import { AdminPanel } from './Components/Admin/AdminPanel';
+import { AdminPanelArticles } from './Components/Admin/AdminPanelArticles';
+import { AdminPanelEvents } from './Components/Admin/AdminPanelEvents';
 
 const Routes = () => (
   <div>
@@ -28,6 +31,9 @@ const Routes = () => (
         <Route path='/event-edit/:id' component={EditEvent}/>
         <Route path='/article-creation' component={ArticleCreation}/>
         <Route path='/article-edit/:id' component={EditArticle}/>
+        <Route path='/AdminPanel' component={AdminPanel}/>
+        <Route path='/AdminPanel-articles' component={AdminPanelArticles}/>
+        <Route path='/AdminPanel-events' component={AdminPanelEvents}/>
       </Switch>
   </div>
 )
