@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 02 Gru 2018, 23:07
+-- Czas generowania: 03 Gru 2018, 13:24
 -- Wersja serwera: 5.7.23
 -- Wersja PHP: 7.2.10
 
@@ -587,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `votes` (
   KEY `voting_id` (`voting_id`),
   KEY `voptions_id` (`voptions_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `votes`
@@ -601,7 +601,7 @@ INSERT INTO `votes` (`votes_id`, `voting_id`, `voptions_id`, `user_id`) VALUES
 (5, 2, 4, 3),
 (6, 3, 7, 1),
 (7, 3, 6, 4),
-(8, 4, 8, 1);
+(12, 6, 12, 5);
 
 -- --------------------------------------------------------
 
@@ -618,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `votings` (
   `vtype_id` int(8) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`voting_id`),
   KEY `vtype_id` (`vtype_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `votings`
@@ -628,7 +628,9 @@ INSERT INTO `votings` (`voting_id`, `start_date`, `end_date`, `active`, `vtype_i
 (1, '2018-10-01 00:00:00', '2018-10-31 00:00:00', b'1', 1),
 (2, '2018-10-01 00:00:00', '2018-10-31 00:00:00', b'1', 2),
 (3, '2018-09-01 00:00:00', '2018-09-30 00:00:00', b'0', 1),
-(4, '2018-09-01 00:00:00', '2018-09-30 00:00:00', b'0', 2);
+(4, '2018-09-01 00:00:00', '2018-09-30 00:00:00', b'0', 2),
+(5, '2018-12-01 00:00:00', '2018-12-31 00:00:00', b'1', 2),
+(6, '2018-12-01 00:00:00', '2018-12-31 00:00:00', b'1', 1);
 
 -- --------------------------------------------------------
 
@@ -643,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `voting_options` (
   `voting_id` int(8) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`voptions_id`),
   KEY `voting_id` (`voting_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `voting_options`
@@ -657,7 +659,10 @@ INSERT INTO `voting_options` (`voptions_id`, `name`, `voting_id`) VALUES
 (5, 'Why Don\'t We', 3),
 (6, 'Adele', 3),
 (7, 'Paweł Domagała', 3),
-(8, 'Why Don\'t We - Trust Fund Baby', 4);
+(8, 'Why Don\'t We - Trust Fund Baby', 4),
+(9, 'Uga buga tabaluga', 4),
+(10, 'Uga buga tabaluga', 6),
+(12, 'Uga buga tabaluga23', 6);
 
 -- --------------------------------------------------------
 

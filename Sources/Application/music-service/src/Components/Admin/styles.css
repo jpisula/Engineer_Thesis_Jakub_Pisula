@@ -33,13 +33,13 @@
     font-weight: 600 !important;
 }
 
-h1 {
+.h1adm {
     font-size: 2vw;
     color: lightgray;
     margin: 5%;
     text-align: center;
 }
-h2 {
+.h2adm {
     font-size: 1.5vw;
     color: lightgray;
     margin: 5%;

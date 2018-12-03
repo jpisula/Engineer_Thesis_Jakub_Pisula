@@ -33,8 +33,8 @@ export class AdminPanel extends React.Component {
                 return (
                     <div>
                         <div className="sidenav">
-                            <h1>MyMusic</h1>
-                            <h2>Admin panel</h2>
+                            <h1 className="h1adm">MyMusic</h1>
+                            <h2 className="h2adm">Admin panel</h2>
                             <Link to="/adminPanel" className="linkk activee">Użytkownicy</Link>
                             <Link to="/adminPanel-articles" className="linkk">Artykuły</Link>
                             <Link to="/adminPanel-events" className="linkk">Wydarzenia</Link>
