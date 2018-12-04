@@ -17,20 +17,26 @@ import { EditArticle } from './Components/Articles/EditArticle';
 import { AdminPanel } from './Components/Admin/AdminPanel';
 import { AdminPanelArticles } from './Components/Admin/AdminPanelArticles';
 import { AdminPanelEvents } from './Components/Admin/AdminPanelEvents';
+import { Votes } from './Components/Votings/Votes';
 
 const Routes = () => (
   <div>
      <Switch>
         <Route exact path='/' component={App}/>
-        <Route path='/article/:id' component={Article}/>
         <Route path='/profile/:user_id' component={Profile}/>
+
+        <Route path='/article/:id' component={Article}/>
         <Route path='/articles' component={ArticlesList}/>
+        <Route path='/article-creation' component={ArticleCreation}/>
+        <Route path='/article-edit/:id' component={EditArticle}/>
+
         <Route path='/events' component={Events}/>
         <Route path='/event/:id' component={Event}/>
         <Route path='/event-creation' component={EventCreation}/>
         <Route path='/event-edit/:id' component={EditEvent}/>
-        <Route path='/article-creation' component={ArticleCreation}/>
-        <Route path='/article-edit/:id' component={EditArticle}/>
+
+        <Route path='/voting' component={Votes}/>
+
         <Route path='/AdminPanel' component={AdminPanel}/>
         <Route path='/AdminPanel-articles' component={AdminPanelArticles}/>
         <Route path='/AdminPanel-events' component={AdminPanelEvents}/>

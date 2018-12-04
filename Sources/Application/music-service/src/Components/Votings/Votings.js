@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './voting.css';
+import { Link } from 'react-router-dom';
 
 export class Votings extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export class Votings extends React.Component {
         const {session} = this.state;
         let link = null;
         if(session.error_code === 0) {
-            link = (<button type="button" className="btn btn-outline-secondary">Głosuj!</button>);
+            link = (<Link to="/voting" className="btn btn-outline-secondary">Głosuj!</Link>);
         }
         return (
             <div className="card voting-card">

@@ -34,6 +34,6 @@
         echo json_encode($jsonData);
 
     } else {
-        echo json_encode(array('message' => 'No voptions Found!'));
+        echo json_encode(array('data' => 0));
     }
     
