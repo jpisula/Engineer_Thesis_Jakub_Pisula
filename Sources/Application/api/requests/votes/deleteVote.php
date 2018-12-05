@@ -14,8 +14,8 @@
 
         $vote = new Votes($db);
 
-        $vote->votes_id = $_POST['votes_id'];
-
+        $vote->voptions_id = $_POST['voptions_id'];
+        $vote->user_id = $_POST['user_id'];
 
         // Update post
         if($vote->deleteVote()) {

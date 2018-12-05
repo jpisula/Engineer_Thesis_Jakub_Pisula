@@ -5,15 +5,14 @@ export class VotesCount extends React.Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
-            votingOption_id: props,
+            votingOption_id: props.id,
             votes: null
         }
     }
 
     componentDidMount() {
-        axios('http://localhost/api/requests/votes/getVotesCount.php?id='+this.props, {
+        axios('http://localhost/api/requests/votes/getVotesCount.php?id='+this.props.id, {
             method: "get",
             withCredentials: true,
             credentials: 'include',
@@ -28,8 +27,7 @@ export class VotesCount extends React.Component {
     render() {
         const {votes} = this.state;
         if(votes !== null) {
-            return votes.voteCount;
-               
+            return votes.voteCount;             
         } else return null;
         
     }

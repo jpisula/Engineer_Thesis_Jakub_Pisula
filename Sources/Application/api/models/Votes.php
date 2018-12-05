@@ -81,6 +81,26 @@ class Votes {
     }
 
     public function addVote() {
+        $query = 'SELECT COUNT(votes_id), votes_id FROM votes
+                  WHERE voting_id = :voting_id AND user_id = :user_id';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':voting_id', $this->voting_id);
+        $stmt->bindParam(':user_id', $this->user_id);
+
+        // Execute query
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($row['COUNT(votes_id)'] == 1) {
+            $query = 'DELETE FROM Votes WHERE votes_id = ?';
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+            // Bind data
+            $stmt->bindParam(1, $row['votes_id']);
+            // Execute query
+            $stmt->execute();
+
+        }
         $query = 'INSERT INTO votes 
         SET
           voting_id = :voting_id, 
@@ -91,17 +111,17 @@ class Votes {
 
         // Clean data
         $this->voting_id = htmlspecialchars(strip_tags($this->voting_id));
-        $this->voptions_id = htmlspecialchars(strip_tags($this->voptions_id));      
-        $this->user_id = htmlspecialchars(strip_tags($this->user_id));    
+        $this->voptions_id = htmlspecialchars(strip_tags($this->voptions_id));
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
 
         $stmt->bindParam(':voting_id', $this->voting_id);
         $stmt->bindParam(':voptions_id', $this->voptions_id);
         $stmt->bindParam(':user_id', $this->user_id);
 
         if ($stmt->execute()) {
-        return true;
-        }
-        else return false;
+            return true;
+        } else return false;
+
     }
 
     public function getActiveVotings() {
@@ -139,12 +159,29 @@ class Votes {
         $this->votesCount = $row['COUNT(votes_id)'];
     }
 
+    public function getUserVote(){
+        $query = 'SELECT vo.voptions_id, COUNT(vo.voptions_id) FROM voting_options vo
+        JOIN votes v on v.voptions_id = vo.voptions_id      
+        WHERE v.user_id = :user_id AND v.voting_id = :voting_id';
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':voting_id', $this->voting_id);
+        // Execute query
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->votesCount = $row['COUNT(vo.voptions_id)'];
+        $this->voptions_id = $row['voptions_id'];
+    }
+
     public function deleteVote() {
-        $query = 'DELETE FROM Votes WHERE votes_id = ?';
+        $query = 'DELETE FROM Votes WHERE user_id = :user_id AND voptions_id = :voptions_id';
         // Prepare statement
         $stmt = $this->conn->prepare($query);
         // Bind data
-        $stmt->bindParam(1, $this->votes_id);
+        $stmt->bindParam('user_id', $this->user_id);
+        $stmt->bindParam('voptions_id', $this->voptions_id);
         // Execute query
         if($stmt->execute()) return true;
         else return false;
