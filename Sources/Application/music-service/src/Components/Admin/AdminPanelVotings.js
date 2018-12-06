@@ -2,11 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "./styles.css";
-import { AdminUsers } from './AdminUsers';
-import { AdminArticles } from './AdminArticles';
-import { AdminEvents } from './AdminEvents';
+import { AdminVotings } from './AdminVotings';
 
-export class AdminPanelEvents extends React.Component {
+
+export class AdminPanelVotings extends React.Component {
     constructor(props) {
         super(props);
 
@@ -39,15 +38,15 @@ export class AdminPanelEvents extends React.Component {
                             <h2 className="h2adm">Admin panel</h2>
                             <Link to="/adminPanel" className="linkk">Użytkownicy</Link>
                             <Link to="/adminPanel-articles" className="linkk">Artykuły</Link>
-                            <Link to="/adminPanel-events" className="linkk activee">Wydarzenia</Link>
-                            <Link to="/adminPanel-votings" className="linkk">Głosowania</Link>
+                            <Link to="/adminPanel-events" className="linkk">Wydarzenia</Link>
+                            <Link to="/adminPanel-votings" className="linkk activee">Głosowania</Link>
                             <Link to="/" className="linkk">Przejdź do strony</Link>
                         </div>
                         <div className="main">
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <AdminEvents />
+                                        <AdminVotings />
                                     </div>
                                 </div>
                             </div>

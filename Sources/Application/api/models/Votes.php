@@ -60,7 +60,7 @@ class Votes {
                   SET
                     start_date = :start_date, 
                     end_date = :end_date,
-                    active = 1,
+                    active = 0,
                     vtype_id = :vtype_id';
 
         $stmt = $this->conn->prepare($query);
@@ -76,6 +76,25 @@ class Votes {
 
         if ($stmt->execute()) {
             return true;
+        }
+        else return false;
+    }
+
+    public function setActiveVoting() {
+        if($this->active == 1) {
+            $query = 'UPDATE votings SET active = 1 WHERE voting_id = :voting_id';
+        } else {
+            $query = 'UPDATE votings SET active = 0 WHERE voting_id = :voting_id';
+        }
+
+        $stmt = $this->conn->prepare($query);     
+
+        $this->voting_id = htmlspecialchars(strip_tags($this->voting_id));     
+
+        $stmt->bindParam(':voting_id', $this->voting_id);
+
+        if ($stmt->execute()) {
+        return true;
         }
         else return false;
     }
@@ -122,6 +141,16 @@ class Votes {
             return true;
         } else return false;
 
+    }
+
+    public function getAdminVotings() {
+        $query = 'SELECT * FROM votings v
+        JOIN voting_types vt on vt.vtype_id = v.vtype_id
+        WHERE end_date > NOW() OR active = 1';
+        $stmt = $this->conn->prepare($query);
+        // Execute query
+        $stmt->execute();
+        return $stmt;
     }
 
     public function getActiveVotings() {

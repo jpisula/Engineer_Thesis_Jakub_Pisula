@@ -38,6 +38,7 @@ export class AdminPanel extends React.Component {
                             <Link to="/adminPanel" className="linkk activee">Użytkownicy</Link>
                             <Link to="/adminPanel-articles" className="linkk">Artykuły</Link>
                             <Link to="/adminPanel-events" className="linkk">Wydarzenia</Link>
+                            <Link to="/adminPanel-votings" className="linkk">Głosowania</Link>
                             <Link to="/" className="linkk">Przejdź do strony</Link>
                         </div>
                         <div className="main">

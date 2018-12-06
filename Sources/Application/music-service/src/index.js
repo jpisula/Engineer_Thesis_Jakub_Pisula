@@ -18,6 +18,7 @@ import { AdminPanel } from './Components/Admin/AdminPanel';
 import { AdminPanelArticles } from './Components/Admin/AdminPanelArticles';
 import { AdminPanelEvents } from './Components/Admin/AdminPanelEvents';
 import { Votes } from './Components/Votings/Votes';
+import { AdminPanelVotings } from './Components/Admin/AdminPanelVotings';
 
 const Routes = () => (
   <div>
@@ -40,6 +41,7 @@ const Routes = () => (
         <Route path='/AdminPanel' component={AdminPanel}/>
         <Route path='/AdminPanel-articles' component={AdminPanelArticles}/>
         <Route path='/AdminPanel-events' component={AdminPanelEvents}/>
+        <Route path='/AdminPanel-votings' component={AdminPanelVotings}/>
       </Switch>
   </div>
 )
