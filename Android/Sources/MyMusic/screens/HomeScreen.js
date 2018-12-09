@@ -54,7 +54,7 @@ export default class HomeScreen extends React.Component {
     if(session !== null && articles!== null) {
       return (
         <ScrollView style={styles.container}>
-          <ArticlesList articles={articles} title="Ostatnie Artykuły"/>
+          <ArticlesList articles={articles} title="Ostatnie Artykuły" session={session}/>
         </ScrollView>
       );
     } else return null;

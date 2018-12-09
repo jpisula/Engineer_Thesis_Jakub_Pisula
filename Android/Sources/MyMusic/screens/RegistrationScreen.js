@@ -39,6 +39,10 @@ export default class RegistrationScreen extends React.Component {
         });
       }
 
+      goBack() {
+        this.props.navigation.navigate('Login')
+      }
+
     
       render() {
         const { countries } = this.state;
@@ -112,6 +116,20 @@ export default class RegistrationScreen extends React.Component {
                     onPress={this.register.bind(this)} 
                     color='blue'
                     style={styles.button} />
+                </View>
+
+                <View style={styles.button_div}>
+                <Button
+                    style={{
+                        backgroundColor: 'lightgrey',
+                        borderColor: "transparent",
+                        borderWidth: 0,
+                        borderRadius: 5,
+                        marginTop: 10
+                        }}
+                    title='Powrót'
+                    onPress={this.goBack.bind(this)}
+                />
                 </View>
             </View>
             );

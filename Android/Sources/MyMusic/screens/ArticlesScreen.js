@@ -52,7 +52,7 @@ export default class ArticlesScreen extends React.Component {
     if(session !== null && articles!== null) {
       return (
         <ScrollView style={styles.container}>
-          <ArticlesList articles={articles} title="Artykuły"/>
+          <ArticlesList articles={articles} title="Artykuły" session={session}/>
         </ScrollView>
       );
     } else return null;
