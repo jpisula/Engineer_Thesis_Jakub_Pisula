@@ -204,6 +204,45 @@ class Votes {
         $this->voptions_id = $row['voptions_id'];
     }
 
+    public function getVictory(){
+        $query = 'SELECT vo.voptions_id, vo.name from voting_options vo
+        JOIN votings v on v.voting_id = vo.voting_id
+        JOIN voting_types vt on vt.vtype_id = v.vtype_id
+        WHERE v.start_date=:start_date AND v.vtype_id = :id';
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':start_date', $this->start_date);
+        $stmt->bindParam(':id', $this->vtype_id);
+        // Execute query
+        $stmt->execute();
+        $rowCount = $stmt->rowCount();
+
+        if($rowCount > 0) {
+            $this->votesCount = 0;
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $query = 'SELECT COUNT(v.votes_id) as liczba FROM votes v
+                JOIN voting_options vo on vo.voptions_id = v.voptions_id
+                WHERE vo.voptions_id = ?';
+                $stmtt = $this->conn->prepare($query);
+                $stmtt->bindParam(1, $row['voptions_id']);
+                // Execute query
+                $stmtt->execute();
+                $count = $stmtt->fetch(PDO::FETCH_ASSOC);
+
+                if($this->votesCount < $count['liczba']) {
+                    $this->votesCount = $count['liczba'];
+                    $this->voptions_id = $row['voptions_id'];
+                    $this->voptions_name = $row['name'];
+                }
+            }
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
     public function deleteVote() {
         $query = 'DELETE FROM Votes WHERE user_id = :user_id AND voptions_id = :voptions_id';
         // Prepare statement

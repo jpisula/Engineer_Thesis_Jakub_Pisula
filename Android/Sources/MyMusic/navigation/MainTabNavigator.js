@@ -4,11 +4,13 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import ArticlesScreen from '../screens/ArticlesScreen';
+import EventsScreen from '../screens/EventsScreen';
+import AccountScreen from '../screens/AccountScreen';
+import VotesScreen from '../screens/VotesScreen';
 
 const VotesStack = createStackNavigator({
-  Vote: HomeScreen,
+  Vote: VotesScreen,
 });
 
 VotesStack.navigationOptions = {
@@ -26,7 +28,7 @@ VotesStack.navigationOptions = {
 };
 
 const EventsStack = createStackNavigator({
-  Events: HomeScreen,
+  Events: EventsScreen,
 });
 
 EventsStack.navigationOptions = {
@@ -77,7 +79,7 @@ ArticlesStack.navigationOptions = {
 };
 
 const AccountStack = createStackNavigator({
-  Account: SettingsScreen,
+  Account: AccountScreen,
 });
 
 AccountStack.navigationOptions = {

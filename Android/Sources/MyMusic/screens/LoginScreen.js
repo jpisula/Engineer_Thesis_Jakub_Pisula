@@ -70,7 +70,7 @@ export default class LoginScreen extends React.Component {
       }
 
       goToReg() {
-        this.props.navigation.navigate('Registration')
+        this.props.navigation.navigate('Registration');
       }
 
       login() {

@@ -9,21 +9,20 @@ import {
   View,
 } from 'react-native';
 import axios from 'axios';
+import UserPanel from '../components/account/UserPanel';
 
-import { ArticlesList } from '../components/articles/articlesList';
 
-export default class ArticlesScreen extends React.Component {
+export default class AccountScreen extends React.Component {
   constructor(props) {
     super(props);
 
 
     this.state = {
-      session: null,
-      articles: null
+      session: null
     };
   }
   static navigationOptions = {
-    title: 'Artykuły',
+    title: 'Twoje konto',
   };
 
   componentDidMount() {
@@ -44,16 +43,16 @@ export default class ArticlesScreen extends React.Component {
       origin: '192.168.0.32:80',
       crossdomain: true,  
     }) .then((resp) => {
-        this.setState({articles: resp.data});
+        this.setState({user: resp.data});
     });
   }
 
   render() {
-    const {session, articles} = this.state;
-    if(session !== null && articles!== null) {
+    const {session} = this.state;
+    if(session !== null) {
       return (
         <ScrollView style={styles.container}>
-          <ArticlesList articles={articles} title="Artykuły" session={session}/>
+          <UserPanel session={session} nav={this.props.navigation}/>
         </ScrollView>
       );
     } else return null;

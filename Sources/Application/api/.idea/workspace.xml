@@ -2,18 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08475078-87e1-47a9-94b2-76694373945b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/.watchmanconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/Login/LoginForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/Login/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/assets/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/assets/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/app/package.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/requests/votes/getVoteWinner.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/navigation/AppNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/navigation/AppNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/navigation/MainTabNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/navigation/MainTabNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/ArticlesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/ArticlesScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/RegistrationScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/RegistrationScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android/Sources/MyMusic/screens/SettingsScreen.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Votes.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Votes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requests/comments/getEventComments.php" beforeDir="false" afterPath="$PROJECT_DIR$/requests/comments/getEventComments.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requests/events/getUserEventsParticip.php" beforeDir="false" afterPath="$PROJECT_DIR$/requests/events/getUserEventsParticip.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../music-service/src/Components/Events/UserEventsParticip.js" beforeDir="false" afterPath="$PROJECT_DIR$/../music-service/src/Components/Events/UserEventsParticip.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,12 +32,12 @@
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.5" value="3" />
-          <entry key="project.open.time.6" value="6" />
+          <entry key="project.open.time.5" value="4" />
+          <entry key="project.open.time.6" value="7" />
           <entry key="project.open.time.7" value="8" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="26" />
+          <entry key="project.opened" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -45,7 +46,7 @@
           <entry key="css" value="1" />
           <entry key="jpg" value="4" />
           <entry key="js" value="3" />
-          <entry key="php" value="217" />
+          <entry key="php" value="224" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -53,19 +54,19 @@
           <entry key="CSS" value="1" />
           <entry key="Image" value="4" />
           <entry key="JavaScript" value="3" />
-          <entry key="PHP" value="216" />
+          <entry key="PHP" value="223" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="78" />
-          <entry key="php" value="13708" />
+          <entry key="php" value="14045" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="13645" />
+          <entry key="PHP" value="13982" />
           <entry key="PLAIN_TEXT" value="79" />
           <entry key="SQL" value="62" />
         </counts>
@@ -79,86 +80,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requests/votes/addVote.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="6" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/Votes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3134">
-              <caret line="216" column="5" selection-start-line="216" selection-start-column="5" selection-end-line="216" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/header.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="91" selection-start-line="5" selection-start-column="91" selection-end-line="5" selection-end-column="91" />
+            <state relative-caret-position="534">
+              <caret line="230" column="31" selection-start-line="230" selection-start-column="31" selection-end-line="230" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requests/articles/getRecentArticles.php">
+        <entry file="file://$PROJECT_DIR$/requests/votes/getVoteWinner.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requests/votes/deleteVote.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requests/votes/getUserVote.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requests/articles/getArticleById.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="19" column="41" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+            <state relative-caret-position="360">
+              <caret line="18" column="42" lean-forward="true" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requests/votes/getVotesCount.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requests/votes/getVotingOptions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" selection-start-line="1" selection-end-line="37" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requests/votes/getActiveVotings.php">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -176,7 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/requests/eventParticipants/addEventParticipant.php" />
         <option value="$PROJECT_DIR$/requests/eventParticipants/deleteEventParticipant.php" />
         <option value="$PROJECT_DIR$/models/Cities.php" />
         <option value="$PROJECT_DIR$/requests/events/addEvent.php" />
@@ -209,12 +154,9 @@
         <option value="$PROJECT_DIR$/requests/articles/getArticleById.php" />
         <option value="$PROJECT_DIR$/requests/events/getAllEvents.php" />
         <option value="$PROJECT_DIR$/requests/events/getActiveEvents.php" />
-        <option value="$PROJECT_DIR$/requests/comments/getEventComments.php" />
         <option value="$PROJECT_DIR$/requests/comments/addEventComment.php" />
-        <option value="$PROJECT_DIR$/requests/events/getUserEvents.php" />
         <option value="$PROJECT_DIR$/requests/eventParticipants/getUserEventsParticip.php" />
         <option value="$PROJECT_DIR$/models/Events.php" />
-        <option value="$PROJECT_DIR$/requests/events/getUserEventsParticip.php" />
         <option value="$PROJECT_DIR$/requests/users/signIn.php" />
         <option value="$PROJECT_DIR$/requests/events/getEventById.php" />
         <option value="$PROJECT_DIR$/requests/events/editEvent.php" />
@@ -224,9 +166,13 @@
         <option value="$PROJECT_DIR$/requests/articles/editArticle.php" />
         <option value="$PROJECT_DIR$/requests/articles/deleteArticle.php" />
         <option value="$PROJECT_DIR$/requests/votes/getUserVote.php" />
-        <option value="$PROJECT_DIR$/models/Votes.php" />
         <option value="$PROJECT_DIR$/requests/votes/deleteVote.php" />
         <option value="$PROJECT_DIR$/config/header.php" />
+        <option value="$PROJECT_DIR$/requests/events/getUserEvents.php" />
+        <option value="$PROJECT_DIR$/requests/events/getUserEventsParticip.php" />
+        <option value="$PROJECT_DIR$/requests/comments/getEventComments.php" />
+        <option value="$PROJECT_DIR$/requests/votes/getVoteWinner.php" />
+        <option value="$PROJECT_DIR$/models/Votes.php" />
       </list>
     </option>
   </component>
@@ -236,7 +182,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1939" />
@@ -248,7 +194,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -275,42 +220,6 @@
               <item name="api" type="b2602c69:ProjectViewProjectNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
               <item name="requests" type="462c0819:PsiDirectoryNode" />
-              <item name="articles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="requests" type="462c0819:PsiDirectoryNode" />
-              <item name="comments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="requests" type="462c0819:PsiDirectoryNode" />
-              <item name="countries" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="requests" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="requests" type="462c0819:PsiDirectoryNode" />
-              <item name="roles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="requests" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="requests" type="462c0819:PsiDirectoryNode" />
               <item name="votes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -328,6 +237,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -393,17 +303,19 @@
       <workItem from="1543525190644" duration="974000" />
       <workItem from="1543593935822" duration="10426000" />
       <workItem from="1544132727040" duration="4374000" />
+      <workItem from="1544614250756" duration="1548000" />
+      <workItem from="1544787966096" duration="2724000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101080000" />
+    <option name="totallyTimeSpent" value="105352000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2228145" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22707888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -452,11 +364,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../../Engineer_Thesis_Jakub_Pisula — kopia/Sources/Application/web/admin/admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4560" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/postAllows.php" />
     <entry file="file://$PROJECT_DIR$/requests/users/signInByFacebook.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -490,13 +397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="6" column="105" selection-start-line="2" selection-start-column="3" selection-end-line="6" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requests/comments/getArticleComments.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="4" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -577,13 +477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/comments/getEventComments.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/setSession.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -626,24 +519,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/events/getUserEvents.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requests/events/getEventsByCity.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requests/events/getUserEventsParticip.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -709,11 +588,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_template_3372.zip/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1560" />
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_template_3372.zip/styles.css" />
     <entry file="file://$PROJECT_DIR$/requests/articles/deleteArticle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -728,10 +603,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requests/articles/getRecentArticles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/requests/votes/deleteVote.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="91" selection-start-line="5" selection-start-column="91" selection-end-line="5" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requests/events/getUserEvents.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -742,44 +638,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/articles/getArticleById.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="41" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requests/votes/getVotesCount.php">
+    <entry file="file://$PROJECT_DIR$/requests/votes/getActiveVotings.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/requests/votes/getVotingOptions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" selection-start-line="1" selection-end-line="37" selection-end-column="5" />
+        <state relative-caret-position="740">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="37" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requests/votes/getActiveVotings.php">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/requests/events/getUserEventsParticip.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="814">
+          <caret line="43" column="53" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requests/comments/getArticleComments.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="694">
+          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="43" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requests/comments/getEventComments.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requests/articles/getArticleById.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requests/votes/getVotesCount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requests/votes/getVoteWinner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="42" lean-forward="true" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Votes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3134">
-          <caret line="216" column="5" selection-start-line="216" selection-start-column="5" selection-end-line="216" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requests/articles/getRecentArticles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="91" selection-start-line="5" selection-start-column="91" selection-end-line="5" selection-end-column="91" />
+        <state relative-caret-position="534">
+          <caret line="230" column="31" selection-start-line="230" selection-start-column="31" selection-end-line="230" selection-end-column="31" />
         </state>
       </provider>
     </entry>

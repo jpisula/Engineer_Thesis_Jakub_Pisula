@@ -27,7 +27,8 @@ export class UserEventsParticip extends React.Component {
 
     render() {
         const {events} = this.state;
-        if(events!=null) {
+        if(events!==null) {
+            if(events.data[0].event_id !== 0){
             let eventList = events.data.map((event) => {
                 let event_path = '/event/' + event.event_id;
                 return (
@@ -51,16 +52,18 @@ export class UserEventsParticip extends React.Component {
                     </div>
                 </div>
             );
-        } else
-        return (
-            <div className="card">
-                <div className="card-header">
-                    Twoje wydarzenia:
+
+            } else
+            return (
+                <div className="card">
+                    <div className="card-header">
+                        Twoje wydarzenia:
+                    </div>
+                    <div className="card-body">
+                        <p>Nie jesteś zapisany do żadnego wydarzenia!</p>
+                    </div>
                 </div>
-                <div className="card-body">
-                    <p>Nie jesteś zapisany do żadnego wydarzenia!</p>
-                </div>
-            </div>
-        );
+            );
+        } else return null;
     }
 }

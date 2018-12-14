@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ProfilePanel } from '../Profile/ProfilePanel';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { VotingList } from './VotingList';
+import { Votings } from './Votings';
 
 export class Votes extends React.Component {
     constructor(props) {
@@ -39,6 +40,7 @@ export class Votes extends React.Component {
                                 <div className="col-lg-1 col-md-1"></div>
                                 <div className="user-profile col-lg-3 col-md-3 col-sm-12">
                                     <ProfilePanel {...session} />
+                                    <Votings {...session}/>
                                 </div>  
                                 <div className="content col-lg-7 col-md-7 col-sm-12">
                                     <div className="card events-card">

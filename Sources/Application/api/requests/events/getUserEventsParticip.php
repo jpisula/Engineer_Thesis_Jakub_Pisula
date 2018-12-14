@@ -36,6 +36,12 @@
             echo json_encode($jsonData);
 
         } else {
-            echo json_encode(null);
+            $jsonData = array();
+            $jsonData['data'] = array();
+            $event_item = array(
+                'event_id' => 0
+            );
+            array_push($jsonData['data'], $event_item);
+            echo json_encode($jsonData);
         }
     }

@@ -40,7 +40,7 @@ export default class RegistrationScreen extends React.Component {
       }
 
       goBack() {
-        this.props.navigation.navigate('Login')
+        this.props.navigation.navigate('Login');
       }
 
     
